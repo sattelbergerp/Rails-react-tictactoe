@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="App" id="app">
         <Router>
-          <Route path="/account" component={UserContainer} />
+          <Route path="/user" component={UserContainer} />
         </Router>
       </div>
     );
