@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-export default class AccountContainer extends Component{
+export default class UserContainer extends Component{
 
   render(){
-    return (<div id="account-container">
+    return (<div id="user-container">
         Account Stuff
       </div>);
   }
