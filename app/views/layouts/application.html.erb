@@ -7,8 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <p class="notice">Devise Notice: <%= notice %></p>
+       <p class="alert">Devise Alert: <%= alert %></p>
 
-<%= yield %>
-
+<%= link_to "Index", root_path %>
+<div>
+  <%= yield %>
+</div>
 </body>
 </html>

@@ -1,0 +1,13 @@
+Root Page<br>
+This is a development page<br>
+Testing info and links below (Mostly for devise):<br>
+<br>
+<% if current_user %>
+  Email: <%= current_user.email %><br>
+  Id: <%= current_user.id %><br>
+  <%= link_to "Sign out", destroy_user_session_path, method: 'DELETE' %> or
+  <%= link_to "Delete Account", user_registration_path, method: 'DELETE' %>
+<% else %>
+  <%= link_to "Sign in", new_user_session_path %> or
+  <%= link_to "Sign up", new_user_registration_path %>
+<% end %>
