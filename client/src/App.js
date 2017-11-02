@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
+import AccountContainer from './containers/account/AccountContainer';
 import './App.css';
-
-fetch('/test.json').then(res=>res.json()).then(data=>console.log(data));
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="App" id="app">
+        <Router>
+          <Route path="/account" component={AccountContainer} />
+        </Router>
       </div>
     );
   }
