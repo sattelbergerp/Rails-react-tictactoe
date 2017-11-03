@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'application#index'
   get 'test.json' => 'application#test'
+  get '/user' => 'users#user'
+  resources :users, only: [:show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
