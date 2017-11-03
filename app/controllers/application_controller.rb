@@ -4,9 +4,14 @@ class ApplicationController < ActionController::Base
 
   #TODO enable CSRF
   # protect_from_forgery with: :exception
+  before_action :fake_lag
 
   def test
     render json: '{"res":"OK"}'
+  end
+
+  def fake_lag
+    sleep 1.0
   end
 
 end
