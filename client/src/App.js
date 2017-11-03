@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import UserContainer from './containers/user/UserContainer';
 import { connect } from 'react-redux';
-import { fetchCurrentUser, signOut } from './actions/accountActions'
+import { fetchCurrentUser } from './actions/accountActions'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -15,13 +15,6 @@ class App extends Component {
   render() {
     return (
       <div className="App" id="app">
-        {this.props.account.loading? 'Loading' : 'Idle'}<br />
-        {this.props.account.loggedIn? 'Logged In' : 'No User'}<br />
-        {this.props.account.user.email}<br />
-        {this.props.account.errors.map((error)=>{
-          return (<p>{error}</p>);
-        })}
-        <a href="javascript:void(0)" onClick={event=>this.props.signOut()}>Sign Out</a>
         <Router>
           <Route path="/users" component={UserContainer} />
         </Router>
@@ -35,4 +28,4 @@ function bindStateToProps(state){
 }
 
 
-export default connect(bindStateToProps, {fetchCurrentUser, signOut})(App);
+export default connect(bindStateToProps, {fetchCurrentUser})(App);

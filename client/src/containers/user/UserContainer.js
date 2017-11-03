@@ -8,9 +8,14 @@ export default class UserContainer extends Component{
 
   render(){
     return (<div id="user-container">
-        <Route path={`${this.props.match.url}/sign_in`} component={UserSignInForm} />
-        <Route path={`${this.props.match.url}/sign_up`} component={UserSignUpForm} />
-        <Route path={`${this.props.match.url}/:id`} component={UserInfoPage} />
+      <Switch>
+          <Route path={`${this.props.match.url}/sign_in`}
+            component={UserSignInForm} />
+          <Route path={`${this.props.match.url}/sign_up`}
+            component={UserSignUpForm} />
+          <Route path={`${this.props.match.url}/:id`}
+            component={UserInfoPage} />
+        </Switch>
       </div>);
   }
 
