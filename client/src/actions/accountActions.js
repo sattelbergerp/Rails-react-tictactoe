@@ -16,6 +16,17 @@ function signIn(user){
   };
 }
 
+function signOut(){
+  return dispatch => {
+    dispatch({type: 'SIGN_OUT_STARTED'});
+    fetch('/users/sign_out.json', {
+      credentials: "same-origin",
+      method: 'DELETE',
+    }).then(res=>res.blob())
+      .then(res=>{dispatch({type: "SIGN_OUT"})});
+  };
+}
+
 function fetchCurrentUser(){
   return dispatch => {
     dispatch({type: 'SIGN_IN_STARTED'});
@@ -24,4 +35,4 @@ function fetchCurrentUser(){
   };
 }
 
-export {signIn, fetchCurrentUser};
+export {signIn, fetchCurrentUser, signOut};

@@ -4,6 +4,11 @@ export default function accountReducer(state={
   error: undefined,
   user: {}
 }, action){
+  let loadingState = {loggedIn: false,
+    loading: true,
+    error: undefined,
+    user: {}};
+
   switch(action.type){
     case "SIGN_IN":
       if(!action.payload){
@@ -23,10 +28,14 @@ export default function accountReducer(state={
           user: action.payload};
       }
     case 'SIGN_IN_STARTED':
-      return {loggedIn: false,
-        loading: true,
-        error: undefined,
-        user: {}};
+      return loadingState;
+    case 'SIGN_OUT_STARTED':
+      return loadingState;
+    case 'SIGN_OUT':
+    return {loggedIn: false,
+      loading: false,
+      error: undefined,
+      user: {}};
     default:
       return state;
   }

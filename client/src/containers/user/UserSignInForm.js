@@ -27,7 +27,9 @@ class UserContainer extends Component{
   }
 
   componentDidUpdate(){
-    this.props.history.push('/')
+    if(this.props.account.loggedIn){
+      this.props.history.push('/')
+    }
   }
 
   render(){
