@@ -7,6 +7,17 @@
   max-width: 300px;
   padding-left: 10px;
   padding-right: 10px;
+  background-color: #ECECEC;
+  animation: slideIn 0.2s linear 1;
+}
+
+@keyframes slideIn{
+  0%{
+    right: -400px;
+  }
+  100%{
+    right: 0px;
+  }
 }
 
 html, body, #root, #app {
