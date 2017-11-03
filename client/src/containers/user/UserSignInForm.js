@@ -26,6 +26,10 @@ class UserContainer extends Component{
     }
   }
 
+  componentDidUpdate(){
+    this.props.history.push('/')
+  }
+
   render(){
     return (<div id="user-container">
         <h2>Sign In</h2>

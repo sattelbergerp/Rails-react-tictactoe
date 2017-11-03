@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import UserContainer from './containers/user/UserContainer';
 import { connect } from 'react-redux';
+import { fetchCurrentUser } from './actions/accountActions'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
 
 class App extends Component {
+
+  componentDidMount(){
+    this.props.fetchCurrentUser();
+  }
+
   render() {
     return (
       <div className="App" id="app">
@@ -26,4 +32,4 @@ function bindStateToProps(state){
 }
 
 
-export default connect(bindStateToProps)(App);
+export default connect(bindStateToProps, {fetchCurrentUser})(App);

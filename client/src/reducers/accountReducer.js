@@ -6,16 +6,21 @@ export default function accountReducer(state={
 }, action){
   switch(action.type){
     case "SIGN_IN":
-      if(!action.payload.error){
-        return {loggedIn: true,
+      if(!action.payload){
+        return {loggedIn: false,
           loading: false,
-          error: undefined,
-          user: action.payload};
-      }else{
+          error: null,
+          user: {}};
+      }else if(action.payload.error){
         return {loggedIn: false,
           loading: false,
           error: action.payload.error,
           user: {}};
+      }else{
+        return {loggedIn: true,
+          loading: false,
+          error: undefined,
+          user: action.payload};
       }
     case 'SIGN_IN_STARTED':
       return {loggedIn: false,
