@@ -18,7 +18,9 @@ class App extends Component {
         {this.props.account.loading? 'Loading' : 'Idle'}<br />
         {this.props.account.loggedIn? 'Logged In' : 'No User'}<br />
         {this.props.account.user.email}<br />
-        {this.props.account.error}
+        {this.props.account.errors.map((error)=>{
+          return (<p>{error}</p>);
+        })}
         <a href="javascript:void(0)" onClick={event=>this.props.signOut()}>Sign Out</a>
         <Router>
           <Route path="/users" component={UserContainer} />

@@ -16,6 +16,23 @@ function signIn(user){
   };
 }
 
+function signUp(user){
+  user = Object.assign({}, {password_confirmation: 'dsg'}, user);
+  return dispatch => {
+    dispatch({type: 'SIGN_UP_STARTED'});
+    fetch('/users.json', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: "same-origin",
+      method: "POST",
+      body: JSON.stringify({user})
+    }).then(res=>res.json())
+      .then(res=>dispatch({type: "SIGN_UP", payload: res}));
+  };
+}
+
 function signOut(){
   return dispatch => {
     dispatch({type: 'SIGN_OUT_STARTED'});
@@ -35,4 +52,4 @@ function fetchCurrentUser(){
   };
 }
 
-export {signIn, fetchCurrentUser, signOut};
+export {signIn, signUp, fetchCurrentUser, signOut};
