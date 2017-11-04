@@ -3,6 +3,12 @@ class GamesController < ApplicationController
 
   before_action :set_game, only: [:show, :join, :turn]
 
+  def index
+    render json: {
+      games: ActiveModelSerializers::SerializableResource.new(Game.all).as_json
+    }
+  end
+
   def show
     if current_user == @game.player1
       @game.player1_last_update = Time.now.to_s
