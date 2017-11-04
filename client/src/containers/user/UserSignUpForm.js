@@ -34,8 +34,17 @@ class UserContainer extends Component{
   }
 
   render(){
+    let errors = (<div></div>);
+
+    if(this.props.account.errors.length > 0){
+      errors = (<div className="alert alert-danger">{this.props.account.errors.map((error, index)=>{
+        return (<p>{error}</p>);
+      })}</div>);
+    }
+
     return (<div id="user-container">
         <h2>Sign Up</h2>
+        {errors}
         <form onSubmit={this.handleOnSubmit}>
           <div className="form-group">
             <label htmlFor="email">Email: </label>
