@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'test.json' => 'application#test'
   get '/user' => 'users#user'
   resources :users, only: [:show]
-  resources :games, only: [:show]
+  resources :games, only: [:show, :create]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
