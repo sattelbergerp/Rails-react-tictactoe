@@ -4,6 +4,11 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :join]
 
   def show
+    if current_user == @game.player1
+      @game.player1_last_update = Time.now
+    elsif current_user == @game.player2
+      @game.player2_last_update = Time.now
+    end
     render json: {
       game: ActiveModelSerializers::SerializableResource.new(@game).as_json
     }
