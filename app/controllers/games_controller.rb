@@ -1,13 +1,15 @@
 class GamesController < ApplicationController
   respond_to :json;
 
-  before_action :set_game, only: [:show, :join]
+  before_action :set_game, only: [:show, :join, :turn]
 
   def show
     if current_user == @game.player1
-      @game.player1_last_update = Time.now
+      @game.player1_last_update = Time.now.to_s
+      @game.save
     elsif current_user == @game.player2
-      @game.player2_last_update = Time.now
+      @game.player2_last_update = Time.now.to_s
+      @game.save
     end
     render json: {
       game: ActiveModelSerializers::SerializableResource.new(@game).as_json
@@ -18,6 +20,7 @@ class GamesController < ApplicationController
     if current_user
       @game = Game.new(game_params)
       @game.player1 = current_user
+      @game.player1_last_update = Time.now
       @game.save
       render json: {
         game: ActiveModelSerializers::SerializableResource.new(@game).as_json
@@ -32,6 +35,7 @@ class GamesController < ApplicationController
       if !@game.player2
         if @game.player1 != current_user
           @game.player2 = current_user
+          @game.player2_last_update = Time.now
           @game.save
           render json: {
             game: ActiveModelSerializers::SerializableResource.new(@game).as_json
@@ -47,6 +51,31 @@ class GamesController < ApplicationController
     end
   end
 
+  def turn
+    player = 0
+    if current_user == @game.player1
+      player = 1
+    elsif current_user == @game.player2
+      player = 2
+    end
+    position = params[:game][:position]
+
+    if player == @game.current_turn
+      if valid_move?(position)
+        @game.board[position] = @game.current_tile
+        @game.turn = !@game.turn
+        @game.save
+        render json: {
+          game: ActiveModelSerializers::SerializableResource.new(@game).as_json
+        }
+      else
+        render json: {errors: ['Please select a valid tile']}, status: 403
+      end
+    else
+      render json: {errors: ['It is not your turn']}, status: 403
+    end
+  end
+
   private
   def set_game
     @game = Game.find(params[:id])
@@ -54,6 +83,10 @@ class GamesController < ApplicationController
 
   def game_params
     params.require(:game).permit(:name)
+  end
+
+  def valid_move?(position)
+    position >= 0 && position <= 8 && @game.board[position] == " "
   end
 
 end

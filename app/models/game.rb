@@ -15,4 +15,28 @@ class Game < ActiveRecord::Base
     player1 != nil && player2 != nil
   end
 
+  def current_turn
+    if swap_players
+      turn ? 1 : 2
+    else
+      turn ? 2 : 1
+    end
+  end
+
+  def current_tile
+    if current_turn == 1
+      player1_tile
+    else
+      player2_tile
+    end
+  end
+
+  def player1_tile
+    swap_players ? "O" : "X"
+  end
+
+  def player2_tile
+    swap_players ? "X" : "O"
+  end
+
 end
