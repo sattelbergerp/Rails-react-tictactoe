@@ -4,7 +4,9 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show]
 
   def show
-    render json: {game: @game}
+    render json: {
+      game: ActiveModelSerializers::SerializableResource.new(@game).as_json
+    }
   end
 
   private
