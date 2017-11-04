@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/user' => 'users#user'
   resources :users, only: [:show]
   resources :games, only: [:show, :create]
+  post '/games/:id/join' => 'games#join'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
