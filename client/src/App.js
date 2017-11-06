@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import UserContainer from './containers/user/UserContainer';
-import NewGameForm from './containers/game/NewGameForm'
+import NewGameForm from './components/game/NewGameForm'
 import NavBar from './components/NavBar'
 import { connect } from 'react-redux';
 import { fetchCurrentUser } from './actions/accountActions'

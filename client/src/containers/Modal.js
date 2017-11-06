@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default props => {
-  return (<div className="modal" tabindex="-1" role="dialog" style={{display: 'block'}}>
+  return (<div className="modal" role="dialog" style={{display: 'block'}}>
   <div className="modal-dialog" role="document">
     <div className="modal-content">
       <div className="modal-header">
@@ -11,10 +11,10 @@ export default props => {
         </button>
       </div>
       <div className="modal-body">
-        <p>{props.children}</p>
+        {props.children}
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-primary" disabled={props.loading}>{props.loading? "Loading..." : props.submitText}</button>
+        <button type="button" className="btn btn-primary" onClick={props.onSubmit}  disabled={props.loading}>{props.loading? "Loading..." : props.submitText}</button>
         <button type="button" className="btn btn-secondary" onClick={props.onClose} disabled={props.loading}>Close</button>
       </div>
     </div>
