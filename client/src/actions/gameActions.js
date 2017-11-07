@@ -15,4 +15,19 @@ function createGame(game){
   };
 }
 
-export { createGame };
+function openGame(gameId){
+  return dispatch => {
+    dispatch({type: 'ENTER_GAME_STARTED'});
+    fetch('/games/'+gameId+'.json', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: "same-origin",
+      method: "GET"
+    }).then(res=>res.json())
+      .then(res=>dispatch({type: "ENTER_GAME", payload: res}));
+  };
+}
+
+export { createGame, openGame };

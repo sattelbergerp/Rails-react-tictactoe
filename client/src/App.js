@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import UserContainer from './containers/user/UserContainer';
 import NewGameForm from './components/game/NewGameForm'
+import GameWindow from './containers/game/GameWindow'
 import NavBar from './components/NavBar'
 import { connect } from 'react-redux';
 import { fetchCurrentUser } from './actions/accountActions'
@@ -20,7 +21,10 @@ class App extends Component {
         <div className="App" id="app">
           <NavBar />
           <Route path="/users" component={UserContainer} />
-          <Route path="/games/new" component={NewGameForm} />
+          <Switch>
+            <Route path="/games/new" component={NewGameForm} />
+            <Route path="/games/:id" component={GameWindow} />
+          </Switch>
         </div>
       </Router>
     );

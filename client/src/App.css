@@ -12,6 +12,22 @@
   overflow: auto;
 }
 
+.board{
+  width: 476px;
+  height: 476px;
+  margin: auto;
+  display: block;
+}
+
+.board-tile{
+  display: inline-block;
+  background-color: #DDD;
+  border-radius: 10%;
+  margin: 9px;
+  width: 140px;
+  height: 140px;
+}
+
 .modal-title {
     margin-bottom: 0;
     flex-grow: 1;
