@@ -1,3 +1,33 @@
+import {NetworkQueue} from './../utils/NetworkQueue';
+
+let networkQueue = new NetworkQueue();
+
+let id = 0;
+
+function startHeartbeat(){
+  return (dispatch, getState) => {
+    setInterval(()=>{
+      if(getState().game.inGame && !networkQueue.isBusy()){
+        networkQueue.add(doneCB => {
+          fetch('/games/'+getState().game.current.id+'.json', {
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            credentials: "same-origin",
+            method: "GET"
+          }).then(res=>res.json())
+            .then(res=>{
+              doneCB();
+              dispatch({type: "UPDATE_GAME", payload: res});
+          });
+        });
+      }
+
+    }, 1000);
+  }
+}
+
 /** game={name} */
 function createGame(game){
   return dispatch => {
@@ -30,4 +60,4 @@ function openGame(gameId){
   };
 }
 
-export { createGame, openGame };
+export { createGame, openGame, startHeartbeat};

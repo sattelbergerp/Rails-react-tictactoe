@@ -6,6 +6,7 @@ import GameWindow from './containers/game/GameWindow'
 import NavBar from './components/NavBar'
 import { connect } from 'react-redux';
 import { fetchCurrentUser } from './actions/accountActions'
+import { startHeartbeat } from './actions/gameActions'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -13,6 +14,7 @@ class App extends Component {
 
   componentDidMount(){
     this.props.fetchCurrentUser();
+    this.props.startHeartbeat();
   }
 
   render() {
@@ -36,4 +38,4 @@ function bindStateToProps(state){
 }
 
 
-export default connect(bindStateToProps, {fetchCurrentUser})(App);
+export default connect(bindStateToProps, {fetchCurrentUser, startHeartbeat})(App);
