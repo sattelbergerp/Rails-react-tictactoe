@@ -19,13 +19,35 @@ function startHeartbeat(){
           }).then(res=>res.json())
             .then(res=>{
               doneCB();
-              dispatch({type: "UPDATE_GAME", payload: res});
+              dispatch({type: "UPDATE_GAME", payload: res, resetLoading: false});
           });
         });
       }
 
     }, 1000);
   }
+}
+
+function doTurn(position, gameId){
+  return dispatch => {
+    dispatch({type: 'UPDATE_GAME_STARTED'});
+    networkQueue.add(flagDone=>{
+
+      fetch('/games/'+gameId+'/turn.json', {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        credentials: "same-origin",
+        method: "POST",
+        body: JSON.stringify({game: {position}})
+      }).then(res=>res.json())
+        .then(res=>{
+          dispatch({type: "UPDATE_GAME", payload: res, resetLoading: true})
+          flagDone();
+      });
+    });
+  };
 }
 
 /** game={name} */
@@ -60,4 +82,4 @@ function openGame(gameId){
   };
 }
 
-export { createGame, openGame, startHeartbeat};
+export { createGame, openGame, startHeartbeat, doTurn};
