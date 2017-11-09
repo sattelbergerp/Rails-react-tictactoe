@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import UserContainer from './containers/user/UserContainer';
 import NewGameForm from './components/game/NewGameForm'
 import GameWindow from './containers/game/GameWindow'
+import GamesList from './containers/games/GamesList'
 import NavBar from './components/NavBar'
 import { connect } from 'react-redux';
 import { fetchCurrentUser } from './actions/accountActions'
@@ -22,6 +23,7 @@ class App extends Component {
       <Router>
         <div className="App" id="app">
           <NavBar />
+          <Route path="/" component={GamesList} />
           <Route path="/users" component={UserContainer} />
           <Switch>
             <Route path="/games/new" component={NewGameForm} />
