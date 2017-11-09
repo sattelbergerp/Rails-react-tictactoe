@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchGames } from './../../actions/gamesActions';
+import { joinGame } from './../../actions/gameActions';
 
 class GamesList extends Component{
 
@@ -10,7 +11,9 @@ class GamesList extends Component{
   }
 
   handleOnJoin = (event, gameId) => {
-    alert("Not Implemented: JOIN " + gameId);
+    //alert("Not Implemented: JOIN " + gameId);
+    this.props.joinGame(gameId);
+    this.props.history.push('/games/'+gameId);
   }
 
   render(){
@@ -36,4 +39,4 @@ function bindStateToProps(state){
   };
 }
 
-export default connect(bindStateToProps, { fetchGames })(GamesList);
+export default connect(bindStateToProps, { fetchGames, joinGame })(GamesList);

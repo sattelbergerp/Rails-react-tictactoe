@@ -82,4 +82,19 @@ function openGame(gameId){
   };
 }
 
-export { createGame, openGame, startHeartbeat, doTurn};
+function joinGame(gameId){
+  return dispatch => {
+    dispatch({type: 'ENTER_GAME_STARTED'});
+    fetch('/games/'+gameId+'/join.json', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: "same-origin",
+      method: "POST"
+    }).then(res=>res.json())
+      .then(res=>dispatch({type: "ENTER_GAME", payload: res}));
+  };
+}
+
+export { createGame, openGame, joinGame, startHeartbeat, doTurn};
