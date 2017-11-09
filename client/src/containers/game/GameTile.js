@@ -7,7 +7,7 @@ export default (props) => {
       <line x1="120" y1="20" x2="20" y2="120" style={{stroke:"green",strokeWidth:"10", strokeLinecap:"round"}} />
     </div>)
   let blank = (<div></div>);
-  return (<div className="board-tile" onClick={props.clickable?props.onClick : undefined} id={props.id}><div>
+  return (<div className={"board-tile"+ (props.clickable?" enabled":"")} onClick={props.clickable?props.onClick : undefined} id={props.id}><div>
     <svg width="140" height="140">
       {props.tile==="X"? x.props.children : (props.tile==="O"? o : blank)}
     </svg>

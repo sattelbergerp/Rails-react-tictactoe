@@ -21,11 +21,21 @@
 
 .board-tile{
   display: inline-block;
-  background-color: #DDD;
+  background-color: #CCC;
   border-radius: 10%;
   margin: 9px;
   width: 140px;
   height: 140px;
+  cursor: not-allowed;
+}
+
+.board-tile.enabled{
+  background-color: #DDD;
+  cursor: pointer;
+}
+
+.board-tile.enabled:hover{
+  background-color: #EEE;
 }
 
 .modal-title {

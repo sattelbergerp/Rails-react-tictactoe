@@ -11,7 +11,6 @@ class GamesList extends Component{
   }
 
   handleOnJoin = (event, gameId) => {
-    //alert("Not Implemented: JOIN " + gameId);
     this.props.joinGame(gameId);
     this.props.history.push('/games/'+gameId);
   }
