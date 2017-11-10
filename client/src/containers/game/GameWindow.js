@@ -26,10 +26,16 @@ class NewGameForm extends Component{
 
   render(){
     if(!this.props.inGame) return (<div>Entering game please wait</div>);
+
+    let player2_hud = (<div>No Player 2</div>)
+    if(this.props.game.player2){
+      player2_hud = (<span>{this.props.game.player2.email}, W:{this.props.game.player2_wins}</span>)
+    }
+
     return (<div>
       {this.props.game.name} | {this.props.loading? "Loading..." : ""}<br/>
-      Player1: {this.props.game.player1.email}<br/>
-      Player2: {this.props.game.player2? this.props.game.player2.email : "NA"}<br/>
+      Player1: {this.props.game.player1.email}, W:{this.props.game.player1_wins}<br/>
+      Player2: {player2_hud}<br/>
       Current Turn: {this.currentTurn()}<br/>
       {this.props.errors.map((error, index)=>{
         return<p key={index}>Error: {error}, </p>

@@ -1,4 +1,7 @@
 class GamesController < ApplicationController
+
+  WIN_STATES = ["XXX      ","   XXX   ","      XXX","X  X  X  "," X  X  X ","  X  X  X","X   X   X","  X X X  ",]
+
   respond_to :json;
 
   before_action :set_game, only: [:show, :join, :turn]
@@ -70,6 +73,14 @@ class GamesController < ApplicationController
       if valid_move?(position)
         @game.board[position] = @game.current_tile
         @game.turn = !@game.turn
+        winner = getWinner()
+        if winner > -1
+          @game.board = '         '
+          @game.turn = false
+          @game.swap_players = !@game.swap_players
+          @game.player1_wins += winner==1 ? 1 : 0
+          @game.player2_wins += winner==2 ? 1 : 0
+        end
         @game.save
         render json: {
           game: ActiveModelSerializers::SerializableResource.new(@game).as_json
@@ -83,6 +94,33 @@ class GamesController < ApplicationController
   end
 
   private
+  def getWinner
+    board = @game.boardArray
+    WIN_STATES.each do |state|
+      token = nil
+      state.chars.each_with_index do |tile, index|
+        if tile != " "
+          if token == nil
+            token = @game.board[index]
+          elsif token != @game.board[index]
+            token = nil
+            break;
+          end
+        end
+      end
+
+      if token == @game.player1_tile
+        return 1
+      elsif token == @game.player2_tile
+        return 2
+      end
+    end
+    if board.count {|t| t=="X"||t=="O"} == 9
+      return 0;
+    end
+    return -1;
+  end
+
   def set_game
     @game = Game.find(params[:id])
   end
