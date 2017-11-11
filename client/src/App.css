@@ -1,3 +1,15 @@
+.inline-block{
+  display: inline-block;
+}
+
+.right{
+  float: right;
+}
+
+.left{
+  float: left;
+}
+
 #user-container{
   position: fixed;
   top: 0px;
@@ -42,6 +54,11 @@
 .game-window .title .close{
   font-size: 1.5em;
   line-height: 0.8em;
+}
+
+.player-info-text{
+  display: inline-block;
+  margin-top: 12px;
 }
 
 .board{

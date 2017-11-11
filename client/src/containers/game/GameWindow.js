@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { openGame, doTurn, deleteGame } from './../../actions/gameActions';
 import GameBoard from './GameBoard';
+import PlayerInfo from './../../components/game/PlayerInfo'
 
 class NewGameForm extends Component{
 
@@ -35,16 +36,6 @@ class NewGameForm extends Component{
     });
     //if(!this.props.inGame) return (<div>Entering game please wait {errors}</div>);
 
-    let player1Hud = (<div>No Player 1</div>)
-    if(this.props.game.player1){
-      player1Hud = (<span>{this.props.game.player1.email}, W:{this.props.game.player1_wins}</span>)
-    }
-
-    let player2Hud = (<div>No Player 2</div>)
-    if(this.props.game.player2){
-      player2Hud = (<span>{this.props.game.player2.email}, W:{this.props.game.player2_wins}</span>)
-    }
-
     let gameBoard = (<div></div>);
     if(this.props.game.board){
       gameBoard = (<GameBoard board={this.props.game.board} onClick={this.handleOnClick} clickable={!this.props.loading && this.currentTurn()=="your_turn"}/>);
@@ -58,9 +49,11 @@ class NewGameForm extends Component{
           <span aria-hidden="true">&times;</span>
         </button>
         </div>
-        Player1: {player1Hud}<br/>
-        Player2: {player2Hud}<br/>
-        Current Turn: {this.currentTurn()}<br/>
+        <div className="clearfix">
+        <PlayerInfo game={this.props.game} playerIndex={1} />
+        <PlayerInfo game={this.props.game} playerIndex={2} right="true"/>
+        </div>
+        <div>Current Turn: {this.currentTurn()}</div>
         {errors}
         <br/>
 
