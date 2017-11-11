@@ -33,25 +33,39 @@ class NewGameForm extends Component{
     let errors = this.props.errors.map((error, index)=>{
       return<p key={index}>Error: {error}, </p>
     });
-    if(!this.props.inGame) return (<div>Entering game please wait {errors}</div>);
+    //if(!this.props.inGame) return (<div>Entering game please wait {errors}</div>);
 
-    let player2_hud = (<div>No Player 2</div>)
-    if(this.props.game.player2){
-      player2_hud = (<span>{this.props.game.player2.email}, W:{this.props.game.player2_wins}</span>)
+    let player1Hud = (<div>No Player 1</div>)
+    if(this.props.game.player1){
+      player1Hud = (<span>{this.props.game.player1.email}, W:{this.props.game.player1_wins}</span>)
     }
 
-    return (<div>
-      <button type="button" className="close" onClick={this.onCloseGame} disabled={this.props.loading}>
-        <span aria-hidden="true">&times;</span>
-      </button>
-      {this.props.game.name} | {this.props.loading? "Loading..." : ""}<br/>
-      Player1: {this.props.game.player1.email}, W:{this.props.game.player1_wins}<br/>
-      Player2: {player2_hud}<br/>
-      Current Turn: {this.currentTurn()}<br/>
-      {errors}
-      <br/>
+    let player2Hud = (<div>No Player 2</div>)
+    if(this.props.game.player2){
+      player2Hud = (<span>{this.props.game.player2.email}, W:{this.props.game.player2_wins}</span>)
+    }
 
-      <GameBoard board={this.props.game.board} onClick={this.handleOnClick} clickable={!this.props.loading && this.currentTurn()=="your_turn"}/>
+    let gameBoard = (<div></div>);
+    if(this.props.game.board){
+      gameBoard = (<GameBoard board={this.props.game.board} onClick={this.handleOnClick} clickable={!this.props.loading && this.currentTurn()=="your_turn"}/>);
+    }
+
+    return (<div className="overlay">
+      <div className="game-window">
+        <div className="title">
+        {this.props.game.name}
+        <button type="button" className="close" onClick={this.onCloseGame} disabled={this.props.loading}>
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        Player1: {player1Hud}<br/>
+        Player2: {player2Hud}<br/>
+        Current Turn: {this.currentTurn()}<br/>
+        {errors}
+        <br/>
+
+        {gameBoard}
+      </div>
       </div>);
   }
 
