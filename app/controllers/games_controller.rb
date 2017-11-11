@@ -4,7 +4,7 @@ class GamesController < ApplicationController
 
   respond_to :json;
 
-  before_action :set_game, only: [:show, :join, :turn]
+  before_action :set_game, only: [:show, :join, :turn, :destroy]
 
   def index
     render json: {
@@ -36,6 +36,15 @@ class GamesController < ApplicationController
       }
     else
       render json: {errors: ['Must be logged in to create a game']}, status: 401
+    end
+  end
+
+  def destroy
+    if current_user == @game.player1 || current_user == @game.player2
+      @game.destroy
+      render json: {}
+    else
+      render json: {errors: ['You are not playing the game so you cannot end the game']}, status: 403
     end
   end
 
@@ -122,7 +131,10 @@ class GamesController < ApplicationController
   end
 
   def set_game
-    @game = Game.find(params[:id])
+    @game = Game.find_by(id: params[:id])
+    if !@game
+      render json: {errors: ["The requested game does not exist (Perhaps the other player left)"]}
+    end
   end
 
   def game_params
