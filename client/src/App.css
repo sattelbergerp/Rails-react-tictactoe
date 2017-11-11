@@ -87,6 +87,24 @@
   background-color: #EEE;
 }
 
+.current-turn-banner{
+  background-color: #333;
+  margin-top: 5px;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  padding: 2px;
+  color: white;
+}
+
+.current-turn-banner.your_turn{
+  background-color: #262;
+}
+
+.current-turn-banner.opponents_turn{
+  background-color: #622;
+}
+
 .modal-title {
     margin-bottom: 0;
     flex-grow: 1;

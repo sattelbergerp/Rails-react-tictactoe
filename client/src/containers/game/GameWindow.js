@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { openGame, doTurn, deleteGame } from './../../actions/gameActions';
 import GameBoard from './GameBoard';
 import PlayerInfo from './../../components/game/PlayerInfo'
+import CurrentTurnBanner from './../../components/game/CurrentTurnBanner'
 
 class NewGameForm extends Component{
 
@@ -53,9 +54,8 @@ class NewGameForm extends Component{
         <PlayerInfo game={this.props.game} playerIndex={1} />
         <PlayerInfo game={this.props.game} playerIndex={2} right="true"/>
         </div>
-        <div>Current Turn: {this.currentTurn()}</div>
+        <CurrentTurnBanner turn={this.currentTurn()} />
         {errors}
-        <br/>
 
         {gameBoard}
       </div>
