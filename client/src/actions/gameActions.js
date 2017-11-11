@@ -82,6 +82,20 @@ function openGame(gameId){
   };
 }
 
+function deleteGame(gameId){
+  return dispatch => {
+    fetch('/games/'+gameId+'.json', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: "same-origin",
+      method: "DELETE"
+    }).then(res=>res.json())
+      .then(res=>dispatch({type: "EXIT_GAME"}));
+  };
+}
+
 function joinGame(gameId){
   return dispatch => {
     dispatch({type: 'ENTER_GAME_STARTED'});
@@ -97,4 +111,4 @@ function joinGame(gameId){
   };
 }
 
-export { createGame, openGame, joinGame, startHeartbeat, doTurn};
+export { createGame, openGame, joinGame, startHeartbeat, doTurn, deleteGame};

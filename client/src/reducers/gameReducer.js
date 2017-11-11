@@ -38,6 +38,13 @@ export default function usersReducer(state = {
             current: action.payload.game
           };
         }
+    case 'EXIT_GAME':
+      return {
+        loading: false,
+        inGame: false,
+        errors: [],
+        current: {}
+      };
     case 'ENTER_GAME_STARTED':
       return {
         loading: true,
