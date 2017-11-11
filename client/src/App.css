@@ -31,17 +31,19 @@
   z-index: 2000;
   top: 0px;
   left: 0px;
+  overflow: auto;
   position: fixed;
 }
 
 .game-window{
   margin: auto;
   overflow: auto;
-  margin-top: 100px;
+  margin-top: 40px;
   border-radius: 3px;
   box-shadow: 5px 5px 2px #00000033;
   width: 480px;
   background-color: #FFFFFF;
+  animation: windowPullUp 0.2s linear 1;
 }
 
 .game-window .title {
@@ -76,6 +78,11 @@
   width: 140px;
   height: 140px;
   cursor: not-allowed;
+  float: left;
+}
+
+.board-tile svg {
+  animation: growIn 0.4s linear 1;
 }
 
 .board-tile.enabled{
@@ -89,7 +96,7 @@
 
 .current-turn-banner{
   background-color: #333;
-  margin-top: 5px;
+  margin: 5px 0px 5px 0px;
   font-size: 1.1em;
   font-weight: bold;
   text-align: center;
@@ -139,6 +146,29 @@
   }
   100%{
     right: 0px;
+  }
+}
+
+@keyframes growIn{
+  0%{
+    transform: scale(0);
+  }
+  70%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+@keyframes windowPullUp{
+  0%{
+    margin-top: 240px;
+    opacity: 0;
+  }
+  100%{
+    margin-top: 40px;
+    opacity: 1;
   }
 }
 

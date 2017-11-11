@@ -32,11 +32,12 @@ class NewGameForm extends Component{
   }
 
   render(){
-    let errors = this.props.errors.map((error, index)=>{
-      return<p key={index}>Error: {error}, </p>
-    });
-    //if(!this.props.inGame) return (<div>Entering game please wait {errors}</div>);
+    let errors = <div></div>;
 
+    if(this.props.errors.length > 0)errors = (<div className="alert alert-danger">{this.props.errors.map((error, index)=>{
+      return<p key={index}>{error}</p>
+    })}</div>);
+    
     let gameBoard = (<div></div>);
     if(this.props.game.board){
       gameBoard = (<GameBoard board={this.props.game.board} onClick={this.handleOnClick} clickable={!this.props.loading && this.currentTurn()=="your_turn"}/>);
