@@ -142,8 +142,19 @@
 
 .game-list-container{
   position: relative;
-  height: calc(100% - 72px);
+  height: calc(100% - 106px);
   overflow: auto;
+}
+
+.game-list-seletcted{
+  background-color: #88F;
+}
+
+.game-list-controls{
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
 }
 
 .modal-title {

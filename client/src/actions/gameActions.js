@@ -84,6 +84,7 @@ function openGame(gameId){
 
 function deleteGame(gameId){
   return dispatch => {
+    dispatch({type: "EXIT_GAME"})
     fetch('/games/'+gameId+'.json', {
       headers: {
         'Accept': 'application/json',
@@ -91,8 +92,7 @@ function deleteGame(gameId){
       },
       credentials: "same-origin",
       method: "DELETE"
-    }).then(res=>res.json())
-      .then(res=>dispatch({type: "EXIT_GAME"}));
+    });
   };
 }
 
