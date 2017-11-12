@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { openGame, doTurn, deleteGame } from './../../actions/gameActions';
 import GameBoard from './GameBoard';
 import PlayerInfo from './../../components/game/PlayerInfo'
+import LoadingOverlay from './../../components/LoadingOverlay'
 import CurrentTurnBanner from './../../components/game/CurrentTurnBanner'
 
 class NewGameForm extends Component{
@@ -37,7 +38,7 @@ class NewGameForm extends Component{
     if(this.props.errors.length > 0)errors = (<div className="alert alert-danger">{this.props.errors.map((error, index)=>{
       return<p key={index}>{error}</p>
     })}</div>);
-    
+
     let gameBoard = (<div></div>);
     if(this.props.game.board){
       gameBoard = (<GameBoard board={this.props.game.board} onClick={this.handleOnClick} clickable={!this.props.loading && this.currentTurn()=="your_turn"}/>);
@@ -45,6 +46,7 @@ class NewGameForm extends Component{
 
     return (<div className="overlay">
       <div className="game-window">
+        <LoadingOverlay show={this.props.loading} bg={!this.props.inGame}/>
         <div className="title">
         {this.props.game.name}
         <button type="button" className="close" onClick={this.onCloseGame} disabled={this.props.loading}>

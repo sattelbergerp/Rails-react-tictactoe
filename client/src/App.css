@@ -35,6 +35,33 @@
   position: fixed;
 }
 
+.loading-overlay {
+  width: 100%;
+  height: 100%;
+  z-index: 3000;
+  top: 0px;
+  left: 0px;
+  overflow: auto;
+  position: absolute;
+}
+
+.loading-overlay.bg {
+  background-color: #FFFFFF;
+}
+
+.loader{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  border: 5px solid #999;
+  border-top: 3px solid #AAAAFF;
+  margin: -32px 0px 0px -32px;
+  border-radius: 50%;
+  animation: spin 0.5s linear infinite;
+}
+
 .game-window{
   margin: auto;
   overflow: auto;
@@ -44,6 +71,7 @@
   width: 480px;
   background-color: #FFFFFF;
   animation: windowPullUp 0.2s linear 1;
+  position: relative;
 }
 
 .game-window .title {
@@ -169,6 +197,15 @@
   100%{
     margin-top: 40px;
     opacity: 1;
+  }
+}
+
+@keyframes spin{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
   }
 }
 

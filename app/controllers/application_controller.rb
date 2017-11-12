@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def fake_lag
-    #sleep 1.0
+    sleep 0.4
   end
 
 end
