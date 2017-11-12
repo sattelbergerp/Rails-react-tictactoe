@@ -12,6 +12,11 @@ class NewGameForm extends Component{
     if(!this.props.inGame && !this.props.loading){
       this.props.openGame(this.props.match.params.id);
     }
+    window.addEventListener('beforeunload', this.onCloseGame);
+  }
+
+  componentWillUnmount = () => {
+    window.removeEventListener('beforeunload', this.onCloseGame);
   }
 
   handleOnClick = (index) => {

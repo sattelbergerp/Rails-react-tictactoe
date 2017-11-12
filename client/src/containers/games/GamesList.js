@@ -61,9 +61,10 @@ class GamesList extends Component{
           </tbody>
         </table>
         <div className="game-list-controls">
-          <button className="btn btn-default" disabled={this.props.loading} onClick={this.create}>Create Game</button>
+          <button className="btn btn-default" disabled={this.props.loading  || !this.props.loggedIn} onClick={this.create}>Create Game</button>
           <button className="btn btn-default" disabled={this.props.loading} onClick={this.refresh}>Refresh</button>
-          <button className="right btn btn-default" disabled={this.props.loading || this.state.selected === -1} onClick={this.join}>Join Game</button>
+          <button className="right btn btn-default" disabled={this.props.loading || this.state.selected === -1 || !this.props.loggedIn}
+            onClick={this.join}>Join Game</button>
           <button className="right btn btn-default" disabled={this.props.loading || this.state.selected === -1} onClick={this.spectate}>Spectate Game</button>
         </div>
       </div>);
@@ -75,7 +76,8 @@ function bindStateToProps(state){
   return {
     loading: state.games.loading,
     games: state.games.list,
-    errors: state.games.errors
+    errors: state.games.errors,
+    loggedIn: state.account.loggedIn
   };
 }
 
