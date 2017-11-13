@@ -17,6 +17,7 @@ class GamesList extends Component{
   }
 
   refresh = (event) => {
+    this.setState({selected: -1});
     this.props.fetchGames();
   }
 
