@@ -20,10 +20,11 @@ class GamesController < ApplicationController
       @game.player2_last_update = Time.now.to_s
       @game.save
     end
+    since = DateTime.strptime(params[:since] ? "#{params[:since]}" : "0",'%s')
     render json: {
       game: ActiveModelSerializers::SerializableResource.new(@game).as_json,
       timestamp: Time.now.to_i,
-      messages: ActiveModelSerializers::SerializableResource.new(@game.messages).as_json
+      messages: ActiveModelSerializers::SerializableResource.new(@game.messages.where("created_at > ?", since)).as_json
     }
   end
 
