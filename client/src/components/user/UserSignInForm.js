@@ -70,7 +70,7 @@ class UserContainer extends Component{
             value={this.state.password} onChange={this.handleOnChange}/>
           </div>
           <button type="submit" className="btn btn-primary" disabled={this.props.account.loading}>
-            {this.props.account.loading? 'Loading' : 'Sign In'}
+            {this.props.account.loading? (<div className="mini-loader"><div /><div /><div /></div>) : 'Sign In'}
           </button>
         </form>
       </div>);

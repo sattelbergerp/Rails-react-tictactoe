@@ -74,16 +74,16 @@
   height: 10px;
   width: 8px;
   opacity: 0;
-  background-color: #AAAAFF;
-  animation: mini-loader 1.5s linear infinite;
+  background-color: black;
+  animation: mini-loader 0.75s linear infinite;
 }
 
 .mini-loader > div:nth-child(2){
-  animation-delay: 0.25s;
+  animation-delay: 0.125s;
 }
 
 .mini-loader > div:nth-child(3){
-  animation-delay: 0.5s;
+  animation-delay: 0.25s;
 }
 
 .game-window{
