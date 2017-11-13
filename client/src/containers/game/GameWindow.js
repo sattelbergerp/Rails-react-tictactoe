@@ -5,6 +5,7 @@ import GameBoard from './GameBoard';
 import PlayerInfo from './../../components/game/PlayerInfo'
 import LoadingOverlay from './../../components/LoadingOverlay'
 import CurrentTurnBanner from './../../components/game/CurrentTurnBanner'
+import ChatBox from './../../components/game/ChatBox'
 
 class NewGameForm extends Component{
 
@@ -66,6 +67,7 @@ class NewGameForm extends Component{
         {errors}
 
         {gameBoard}
+        <ChatBox />
       </div>
       </div>);
   }

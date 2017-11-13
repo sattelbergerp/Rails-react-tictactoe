@@ -164,6 +164,11 @@
   background-color: #622;
 }
 
+.chatBox{
+  resize: none;
+  width: 100%;
+}
+
 .game-list-container{
   position: relative;
   height: calc(100% - 106px);
