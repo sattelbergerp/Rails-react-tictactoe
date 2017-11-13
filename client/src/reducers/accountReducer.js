@@ -52,6 +52,11 @@ export default function accountReducer(state={
       loading: false,
       errors: [],
       user: {}};
+    case 'CLEAR_ERRORS':
+    return {loggedIn: state.loggedIn,
+      loading: false,
+      errors: [],
+      user: state.user};
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signIn } from './../../actions/accountActions'
+import { signIn, clearErrors } from './../../actions/accountActions'
 
 class UserContainer extends Component{
 
@@ -10,6 +10,10 @@ class UserContainer extends Component{
       email: '',
       password: ''
     }
+  }
+
+  componentDidMount(){
+    this.props.clearErrors();
   }
 
   handleOnChange = (event)=>{
@@ -65,7 +69,7 @@ class UserContainer extends Component{
             <input type="password" className="form-control" id="password"
             value={this.state.password} onChange={this.handleOnChange}/>
           </div>
-          <button type="submit" disabled={this.props.account.loading}>
+          <button type="submit" className="btn btn-primary" disabled={this.props.account.loading}>
             {this.props.account.loading? 'Loading' : 'Sign In'}
           </button>
         </form>
@@ -78,4 +82,4 @@ function bindStateToProps(state){
   return {account: state.account}
 }
 
-export default connect(bindStateToProps, {signIn})(UserContainer);
+export default connect(bindStateToProps, {signIn, clearErrors})(UserContainer);

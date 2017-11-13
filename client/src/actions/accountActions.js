@@ -52,4 +52,8 @@ function fetchCurrentUser(){
   };
 }
 
-export {signIn, signUp, fetchCurrentUser, signOut};
+function clearErrors(){
+  return {type: 'CLEAR_ERRORS'};
+}
+
+export {signIn, signUp, fetchCurrentUser, signOut, clearErrors};
