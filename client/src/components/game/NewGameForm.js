@@ -32,8 +32,15 @@ class NewGameForm extends Component{
   }
 
   render(){
+    let errors= (<div></div>);
+    if(this.props.errors.length > 0){
+      errors = (<div className="alert alert-danger">{this.props.errors.map((error, index)=>{
+        return (<p>{error}</p>);
+      })}</div>);
+    }
     return (<div>
         <Model title="Create Game" onClose={this.handleOnClose} submitText="Create" loading={this.props.loading} onSubmit={this.handleOnSubmit}>
+        {errors}
         <form onSubmit={this.handleOnSubmit}>
           <div className="form-group">
             <label htmlFor="name">Name: </label>
@@ -51,7 +58,8 @@ function bindStateToProps(state){
   return {
     loading: state.game.loading,
     inGame: state.game.inGame,
-    game: state.game.current
+    game: state.game.current,
+    errors: state.game.errors
   };
 }
 

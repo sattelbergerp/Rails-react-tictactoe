@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
 
   #TODO enable CSRF
-  # protect_from_forgery with: :exception
+  #Nothing is more permanent than a temporary solution. - Some Russian Dude
+  #protect_from_forgery with: :exception
   before_action :fake_lag
 
   def test
