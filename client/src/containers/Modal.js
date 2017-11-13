@@ -14,7 +14,8 @@ export default props => {
         {props.children}
       </div>
       <div className="modal-footer">
-        <button type="button" className="btn btn-primary" onClick={props.onSubmit}  disabled={props.loading}>{props.loading? "Loading..." : props.submitText}</button>
+        <button type="button" className="btn btn-primary" onClick={props.onSubmit}  disabled={props.loading}>
+        {props.loading? (<div className="mini-loader"><div /><div /><div /></div>) : props.submitText}</button>
         <button type="button" className="btn btn-secondary" onClick={props.onClose} disabled={props.loading}>Close</button>
       </div>
     </div>
