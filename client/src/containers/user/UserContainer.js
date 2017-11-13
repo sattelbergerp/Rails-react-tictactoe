@@ -7,16 +7,18 @@ import UserInfoPage from './UserInfoPage';
 export default class UserContainer extends Component{
 
   render(){
-    return (<div id="user-container">
-      <Switch>
-          <Route path={`${this.props.match.url}/sign_in`}
-            component={UserSignInForm} />
-          <Route path={`${this.props.match.url}/sign_up`}
-            component={UserSignUpForm} />
-          <Route path={`${this.props.match.url}/:id`}
-            component={UserInfoPage} />
+    return (<div className="overlay">
+      <div id="user-container">
+        <Switch>
+            <Route path={`${this.props.match.url}/sign_in`}
+              component={UserSignInForm} />
+            <Route path={`${this.props.match.url}/sign_up`}
+              component={UserSignUpForm} />
+            <Route path={`${this.props.match.url}/:id`}
+              component={UserInfoPage} />
         </Switch>
-      </div>);
+      </div>
+    </div>);
   }
 
 }
