@@ -45,7 +45,7 @@ export default function usersReducer(state = {
             errors: state.errors,
             current: action.payload.game,
             timestamp: action.payload.timestamp? action.payload.timestamp : state.timestamp,
-            messages: state.messages.concat(action.payload.messages)
+            messages: action.payload.messages? state.messages.concat(action.payload.messages) : state.messages
           };
         }
     case 'EXIT_GAME':
