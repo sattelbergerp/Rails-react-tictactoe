@@ -18,8 +18,8 @@ function startHeartbeat(){
             method: "GET"
           }).then(res=>res.json())
             .then(res=>{
-              doneCB();
               dispatch({type: "UPDATE_GAME", payload: res, resetLoading: false});
+              doneCB();
           });
         });
       }
