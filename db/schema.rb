@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171104005942) do
+ActiveRecord::Schema.define(version: 20171113060939) do
 
   create_table "games", force: :cascade do |t|
     t.string   "name",                default: "Game"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 20171104005942) do
     t.string   "board",               default: "         "
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "contents"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
