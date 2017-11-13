@@ -27,6 +27,10 @@ class UserContainer extends Component{
     }
   }
 
+  handleOnClose = (event) => {
+    this.props.history.push('/');
+  }
+
   componentDidUpdate(){
     if(this.props.account.loggedIn){
       this.props.history.push('/')
@@ -43,7 +47,12 @@ class UserContainer extends Component{
     }
 
     return (<div id="user-container">
-        <h2>Sign Up</h2>
+        <h2>
+          Sign Up
+          <button type="button" className="close close-large right" onClick={this.handleOnClose} disabled={this.props.loading}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </h2>
         {errors}
         <form onSubmit={this.handleOnSubmit}>
           <div className="form-group">
