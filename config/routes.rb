@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get 'test.json' => 'application#test'
   get '/user' => 'users#user'
   resources :users, only: [:show]
-  resources :games, only: [:show, :create, :index, :destroy]
+  resources :games, only: [:show, :create, :index, :destroy] do
+    resources :messages, only: [:create]
+  end
   post '/games/:id/join' => 'games#join'
   post '/games/:id/turn' => 'games#turn'
 
