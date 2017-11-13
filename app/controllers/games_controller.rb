@@ -44,6 +44,7 @@ class GamesController < ApplicationController
 
   def destroy
     if current_user && (current_user == @game.player1 || current_user == @game.player2)
+      @game.messages.destroy_all
       @game.destroy
       render json: {}
     else
