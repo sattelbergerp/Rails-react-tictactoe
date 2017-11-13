@@ -21,7 +21,8 @@ class GamesController < ApplicationController
       @game.save
     end
     render json: {
-      game: ActiveModelSerializers::SerializableResource.new(@game).as_json
+      game: ActiveModelSerializers::SerializableResource.new(@game).as_json,
+      timestamp: Time.now.to_i
     }
   end
 

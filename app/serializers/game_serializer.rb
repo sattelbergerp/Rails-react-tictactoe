@@ -13,10 +13,6 @@ class GameSerializer < ActiveModel::Serializer
     object.player2_last_update.to_i
   end
 
-  attribute :timestamp do
-    Time.now.to_i
-  end
-
   belongs_to :player1
   belongs_to :player2
 end
