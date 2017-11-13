@@ -24,7 +24,7 @@ class GamesController < ApplicationController
     render json: {
       game: ActiveModelSerializers::SerializableResource.new(@game).as_json,
       timestamp: Time.now.to_i,
-      messages: ActiveModelSerializers::SerializableResource.new(@game.messages.where("created_at > ?", since)).as_json
+      messages: ActiveModelSerializers::SerializableResource.new(@game.messages.where("? < created_at", since)).as_json
     }
   end
 

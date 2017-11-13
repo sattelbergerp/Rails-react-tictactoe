@@ -114,4 +114,19 @@ function joinGame(gameId){
   };
 }
 
-export { createGame, openGame, joinGame, startHeartbeat, doTurn, deleteGame};
+//message={contents}
+function sendMessage(gameId, message){
+  return dispatch => {
+    fetch('/games/'+gameId+'/messages.json', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: "same-origin",
+      method: "POST",
+      body: JSON.stringify({message})
+    });
+  };
+}
+
+export { createGame, openGame, joinGame, startHeartbeat, doTurn, deleteGame, sendMessage};

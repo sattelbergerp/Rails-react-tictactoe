@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {} from './../../actions/gameActions'
+import { sendMessage } from './../../actions/gameActions'
 
 class ChatBox extends Component{
 
@@ -18,17 +18,21 @@ class ChatBox extends Component{
 
   handleOnSubmit = event => {
     event.preventDefault();
+    this.props.sendMessage(this.props.gameId, {contents: this.state.msg});
+    this.setState({msg: ''});
   }
 
 
   render(){
-    let why = this.props.messages.map((msg, index) => {
-      return msg.user.email+': '+msg.contents;
+    let contents = this.props.messages.slice().reverse().map((msg, index) => {
+      if(msg)return msg.user.email+': '+msg.contents;
     }).join("\n");
-    console.log(why);
     return (<div>
-        <textarea rows="6" readonly="true" value={why} className="chatBox"/>
-
+        <form onSubmit={this.handleOnSubmit}>
+          <input type="text" className="form-control" id="msg"
+            value={this.state.msg} onChange={this.handleOnChange} placeholder="Say something..."/>
+        </form>
+        <textarea rows="6" readonly="true" value={contents} className="chatBox"/>
       </div>);
   }
 
@@ -36,8 +40,9 @@ class ChatBox extends Component{
 
 function bindStateToProps(state){
   return {
-    messages: state.game.messages
+    messages: state.game.messages,
+    gameId: state.game.current.id
   };
 }
 
-export default connect(bindStateToProps, {})(ChatBox);
+export default connect(bindStateToProps, { sendMessage })(ChatBox);
