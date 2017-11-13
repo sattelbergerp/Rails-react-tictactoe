@@ -15,6 +15,10 @@ class UserInfoPage extends Component{
     this.props.history.push('/');
   }
 
+  handleOnClose = (event) => {
+    this.props.history.push('/');
+  }
+
   render(){
     let content = (<div>Loading...</div>);
     if(!this.props.userLoading){
@@ -30,7 +34,12 @@ class UserInfoPage extends Component{
         </div>);
     }
     return (<div>
-        <h2>User</h2>
+        <h2>
+          User
+          <button type="button" className="close close-large right" onClick={this.handleOnClose} disabled={this.props.loading}>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </h2>
         {content}
       </div>);
   }

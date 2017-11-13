@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import UserSignInForm from './UserSignInForm';
 import UserSignUpForm from './UserSignUpForm';
-import UserInfoPage from './UserInfoPage';
+import UserInfoPage from './../../components/user/UserInfoPage';
 
 export default class UserContainer extends Component{
 
