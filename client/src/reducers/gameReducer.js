@@ -2,7 +2,9 @@ export default function usersReducer(state = {
   loading: false,
   inGame: false,
   errors: [],
-  current: {}
+  current: {},
+  timestamp: 0,
+  messages: []
 }, action){
   switch(action.type){
     case 'ENTER_GAME':
@@ -11,14 +13,18 @@ export default function usersReducer(state = {
           loading: false,
           inGame: false,
           errors: action.payload.errors,
-          current: {}
+          current: {},
+          timestamp: 0,
+          messages: []
         };
       }else{
         return {
           loading: false,
           inGame: true,
           errors: [],
-          current: action.payload.game
+          current: action.payload.game,
+          timestamp: 0,
+          messages: []
         };
       }
       case 'UPDATE_GAME':
@@ -28,14 +34,18 @@ export default function usersReducer(state = {
             loading: loading,
             inGame: true,
             errors: action.payload.errors,
-            current: state.current
+            current: state.current,
+            timestamp: state.timestamp,
+            messages: state.messages
           };
         }else{
           return {
             loading: loading,
             inGame: true,
             errors: state.errors,
-            current: action.payload.game
+            current: action.payload.game,
+            timestamp: action.payload.timestamp? action.payload.timestamp : state.timestamp,
+            messages: state.messages.concat(action.payload.messages)
           };
         }
     case 'EXIT_GAME':
@@ -43,21 +53,27 @@ export default function usersReducer(state = {
         loading: false,
         inGame: false,
         errors: [],
-        current: {}
+        current: {},
+        timestamp: 0,
+        messages: []
       };
     case 'ENTER_GAME_STARTED':
       return {
         loading: true,
         inGame: false,
         errors: [],
-        current: {}
+        current: {},
+        timestamp: 0,
+        messages: []
       };
     case 'UPDATE_GAME_STARTED':
       return {
         loading: true,
         inGame: true,
         errors: [],
-        current: state.current
+        current: state.current,
+        timestamp: state.timestamp,
+        messages: state.messages
       };
     default:
       return state;

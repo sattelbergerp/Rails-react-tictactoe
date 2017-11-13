@@ -9,7 +9,7 @@ function startHeartbeat(){
     setInterval(()=>{
       if(getState().game.inGame && !networkQueue.isBusy() && getState().game.current.id){
         networkQueue.add(doneCB => {
-          fetch('/games/'+getState().game.current.id+'.json', {
+          fetch('/games/'+getState().game.current.id+'.json?since='+getState().game.timestamp, {
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
