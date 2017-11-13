@@ -55,10 +55,35 @@
   width: 64px;
   height: 64px;
   border: 5px solid #999;
-  border-top: 3px solid #AAAAFF;
+  border-top: 5px solid #AAAAFF;
   margin: -32px 0px 0px -32px;
   border-radius: 50%;
   animation: spin 0.5s linear infinite;
+}
+
+.mini-loader{
+  height: 18px;
+  width: 36px;
+}
+
+.mini-loader > div{
+  display: inline-block;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: 2px;
+  height: 10px;
+  width: 8px;
+  opacity: 0;
+  background-color: #AAAAFF;
+  animation: mini-loader 1.5s linear infinite;
+}
+
+.mini-loader > div:nth-child(2){
+  animation-delay: 0.25s;
+}
+
+.mini-loader > div:nth-child(3){
+  animation-delay: 0.5s;
 }
 
 .game-window{
@@ -226,6 +251,20 @@
     transform: rotate(360deg);
   }
 }
+
+
+@keyframes mini-loader{
+  0%{
+    opacity: 0;
+  }
+  35%{
+    opacity: 1;
+  }
+  70%{
+    opacity: 0;
+  }
+}
+
 
 html, body, #root, #app {
   margin: 0px;

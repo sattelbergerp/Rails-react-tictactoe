@@ -6,9 +6,15 @@ class NavBar extends Component {
 
   render() {
     let accountLinks = (<ul className="nav navbar-nav navbar-right">
-      <li><NavLink to="/users/sign_in">Sign In <span className="sr-only"></span></NavLink></li>
-      <li><NavLink to="/users/sign_up">Sign Up <span className="sr-only"></span></NavLink></li>
+      <li><a><div className="mini-loader"><div /><div /><div /></div></a></li>
     </ul>);
+
+    if(!this.props.account.loading){
+      accountLinks = (<ul className="nav navbar-nav navbar-right">
+        <li><NavLink to="/users/sign_in">Sign In <span className="sr-only"></span></NavLink></li>
+        <li><NavLink to="/users/sign_up">Sign Up <span className="sr-only"></span></NavLink></li>
+      </ul>);
+    }
 
     if(this.props.account.loggedIn){
       accountLinks = (<ul className="nav navbar-nav navbar-right">
