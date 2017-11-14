@@ -10,6 +10,20 @@
   float: left;
 }
 
+.game-list{
+  position: relative;
+}
+
+.table-no-items{
+  text-align: center;
+  margin-top: 5px;
+  font-style: italic;
+  width: 100%;
+  position: absolute;
+  top: 50px;
+  left: 0px;
+}
+
 #user-container{
   position: fixed;
   top: 0px;

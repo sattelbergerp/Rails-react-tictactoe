@@ -8,7 +8,7 @@ class GamesController < ApplicationController
 
   def index
     render json: {
-      games: ActiveModelSerializers::SerializableResource.new(Game.all).as_json
+      games: ActiveModelSerializers::SerializableResource.new(Game.all.most_recent).as_json
     }
   end
 

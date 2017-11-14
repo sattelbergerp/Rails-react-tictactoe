@@ -29,7 +29,7 @@ class ChatBox extends Component{
     }).join("\n");
     return (<div>
         <form onSubmit={this.handleOnSubmit}>
-          <input type="text" className="form-control" id="msg"
+          <input type="text" className="form-control" id="msg" disabled={!this.props.inGame}
             value={this.state.msg} onChange={this.handleOnChange} placeholder="Say something..."/>
         </form>
         <textarea rows="6" readonly="true" value={contents} className="chatBox"/>
@@ -41,7 +41,8 @@ class ChatBox extends Component{
 function bindStateToProps(state){
   return {
     messages: state.game.messages,
-    gameId: state.game.current.id
+    gameId: state.game.current.id,
+    inGame: state.game.inGame,
   };
 }
 

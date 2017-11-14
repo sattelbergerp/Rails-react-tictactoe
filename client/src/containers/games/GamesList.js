@@ -39,17 +39,20 @@ class GamesList extends Component{
   }
 
   render(){
-    let gameList = this.props.games.map((game, index)=>{
-    return (<tr className={game.id===this.state.selected? "game-list-seletcted" : ""} onClick={event=>this.select(event, game.id)}>
-      <td>{game.name}</td>
-      <td>{game.player1? game.player1.email : ""}</td>
-      <td>{game.player2? game.player2.email : ""}</td>
-      </tr>);
-    });
+    let gameList = (<div className="table-no-items">No games found</div>)
+    if(this.props.games.length > 0){
+      gameList = this.props.games.map((game, index)=>{
+      return (<tr className={game.id===this.state.selected? "game-list-seletcted" : ""} onClick={event=>this.select(event, game.id)}>
+        <td>{game.name}</td>
+        <td>{game.player1? game.player1.email : ""}</td>
+        <td>{game.player2? game.player2.email : ""}</td>
+        </tr>);
+      });
+    }
 
     return (<div className="game-list-container">
         <LoadingOverlay show={this.props.loading} bg="true" />
-        <table className="table">
+        <table className="table game-list">
           <thead>
             <tr>
              <th scope="col">Game Name</th>
