@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :fake_lag
 
   def fake_lag
-    sleep 0.5
+    sleep ENV['ttt_fakelag'].to_f
   end
 
 end

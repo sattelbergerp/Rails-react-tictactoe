@@ -31,10 +31,11 @@ class GamesController < ApplicationController
       @game = Game.new(game_params)
       @game.player1 = current_user
       @game.player1_last_update = Time.now
-      @game.save
-      render json: {
-        game: ActiveModelSerializers::SerializableResource.new(@game).as_json
-      }
+      if @game.save
+        render json: {game: ActiveModelSerializers::SerializableResource.new(@game).as_json}
+      else
+        render json: {errors: @game.errors.messages.to_a.map {|a| "#{a[0]}: #{a[1].join(',')}"}}
+      end
     else
       render json: {errors: ['Must be logged in to create a game']}, status: 401
     end

@@ -19,6 +19,7 @@ class NewGameForm extends Component{
   }
 
   handleOnChange = (event)=>{
+    if(event.target.id==="name" && event.target.value.length > 36)return;
     this.setState({[event.target.id]: event.target.value});
   }
 
@@ -44,6 +45,7 @@ class NewGameForm extends Component{
         <form onSubmit={this.handleOnSubmit}>
           <div className="form-group">
             <label htmlFor="name">Name: </label>
+            <span className="right">{this.state.name.length}/36</span>
             <input type="text" className="form-control" id="name"
               value={this.state.name} onChange={this.handleOnChange}/>
           </div>
