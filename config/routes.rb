@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'application#index'
-  get 'test.json' => 'application#test'
   get '/user' => 'users#user'
   resources :users, only: [:show]
   resources :games, only: [:show, :create, :index, :destroy] do

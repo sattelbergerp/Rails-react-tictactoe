@@ -8,12 +8,8 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :exception
   before_action :fake_lag
 
-  def test
-    render json: '{"res":"OK"}'
-  end
-
   def fake_lag
-    sleep 0.4
+    sleep 0.5
   end
 
 end
