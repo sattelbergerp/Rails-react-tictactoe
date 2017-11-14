@@ -38,7 +38,8 @@ class GamesList extends Component{
   }
 
   render(){
-    let gameList = (<div className="table-no-items">No games found</div>)
+    let gameList = (<div></div>)
+    if(!this.props.loading)gameList = (<div className="table-no-items">No games found</div>)
     if(this.props.games.length > 0){
       gameList = this.props.games.map((game, index)=>{
       return (<tr key={index} className={game.id===this.state.selected? "game-list-seletcted" : ""} onClick={event=>this.select(event, game.id)}>
