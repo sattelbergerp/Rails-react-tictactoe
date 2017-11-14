@@ -47,7 +47,7 @@ class NewGameForm extends Component{
 
     let gameBoard = (<div></div>);
     if(this.props.game.board){
-      gameBoard = (<GameBoard board={this.props.game.board} onClick={this.handleOnClick} clickable={!this.props.loading && this.currentTurn()=="your_turn"}/>);
+      gameBoard = (<GameBoard board={this.props.game.board} onClick={this.handleOnClick} clickable={!this.props.loading && this.currentTurn()==="your_turn"}/>);
     }
 
     return (<div className="overlay">

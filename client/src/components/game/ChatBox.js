@@ -26,13 +26,14 @@ class ChatBox extends Component{
   render(){
     let contents = this.props.messages.slice().reverse().map((msg, index) => {
       if(msg)return msg.user.email+': '+msg.contents;
+      else return "";
     }).join("\n");
     return (<div>
         <form onSubmit={this.handleOnSubmit}>
           <input type="text" className="form-control" id="msg" disabled={!this.props.inGame}
             value={this.state.msg} onChange={this.handleOnChange} placeholder="Say something..."/>
         </form>
-        <textarea rows="6" readonly="true" value={contents} className="chatBox"/>
+        <textarea rows="6" readOnly="true" value={contents} className="chatBox"/>
       </div>);
   }
 

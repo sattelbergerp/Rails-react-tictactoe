@@ -2,8 +2,6 @@ import {NetworkQueue} from './../utils/NetworkQueue';
 
 let networkQueue = new NetworkQueue();
 
-let id = 0;
-
 function startHeartbeat(){
   return (dispatch, getState) => {
     setInterval(()=>{
