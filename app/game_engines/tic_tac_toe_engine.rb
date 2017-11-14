@@ -14,12 +14,12 @@ class TicTacToeEngine
       player_index = 2
     end
 
-    player_index == @game.current_turn
+    player_index == current_turn
   end
 
   def do_turn(position)
     if valid_move?(position)
-      @game.board[position] = @game.current_tile
+      @game.board[position] = current_tile
       @game.turn = !@game.turn
       winner = getWinner()
       if winner > -1
@@ -54,9 +54,9 @@ class TicTacToeEngine
         end
       end
 
-      if token == @game.player1_tile
+      if token == player1_tile
         return 1
-      elsif token == @game.player2_tile
+      elsif token == player2_tile
         return 2
       end
     end
@@ -64,6 +64,34 @@ class TicTacToeEngine
       return 0;
     end
     return -1;
+  end
+
+  def playing
+    @game.player1 != nil && @game.player2 != nil
+  end
+
+  def current_turn
+    if @game.swap_players
+      @game.turn ? 1 : 2
+    else
+      @game.turn ? 2 : 1
+    end
+  end
+
+  def current_tile
+    if current_turn == 1
+      player1_tile
+    else
+      player2_tile
+    end
+  end
+
+  def player1_tile
+    @game.swap_players ? "O" : "X"
+  end
+
+  def player2_tile
+    @game.swap_players ? "X" : "O"
   end
 
 end
