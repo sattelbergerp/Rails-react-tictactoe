@@ -15,5 +15,5 @@ If you want to run the react server only run 'cd client' then 'npm start'
 ## Contributing
 Yes
 
-##License
+## License
 MIT
