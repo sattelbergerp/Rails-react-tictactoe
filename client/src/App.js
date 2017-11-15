@@ -11,6 +11,7 @@ import { fetchCurrentUser } from './actions/accountActions'
 import { startHeartbeat } from './actions/gameActions'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/js/bootstrap.js'
 
 class App extends Component {
 
