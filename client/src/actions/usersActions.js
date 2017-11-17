@@ -7,10 +7,11 @@ function fetchUser(userId){
 }
 
 function fetchUsers(offset, clear){
+  if(!offset)offset='0';
   return dispatch => {
     if(clear)dispatch({type: 'CLEAR_USERS'});
     dispatch({type: 'FETCH_USERS_STARTED'});
-    fetch('/users.json', {credentials: "same-origin"}).then(res=>res.json())
+    fetch('/users.json?offset='+offset, {credentials: "same-origin"}).then(res=>res.json())
       .then(res=>{dispatch({type: "FETCH_USERS", users: res.users, users_page_size: res.page_size})});
   };
 }

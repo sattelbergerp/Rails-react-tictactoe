@@ -14,9 +14,16 @@ class UsersList extends Component{
     this.props.fetchUsers(0, true);
   }
 
+  loadMore = ()=>{
+    this.props.fetchUsers(this.props.users.length);
+  }
+
   render(){
     return (<div>
       Users: {this.props.users.length}, Loading: {this.props.loading? "Yes" : "No"}, Page Size: {this.props.pageSize}<br/>
+      Has More: {((this.props.users.length % this.props.pageSize) === 0)? "Yes" : "No"}, 
+      <a href="javascript:void(0)" onClick={this.loadMore} >Load More</a>
+      <br />
       <ul>
       {this.props.users.map((user, index)=>{
         return <li key={index}>
