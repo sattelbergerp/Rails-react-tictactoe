@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import { openGame, doTurn, deleteGame } from './../../actions/gameActions';
 import GameBoard from './GameBoard';
 import PlayerInfo from './../../components/game/PlayerInfo'
 import LoadingOverlay from './../../components/LoadingOverlay'
 import CurrentTurnBanner from './../../components/game/CurrentTurnBanner'
 import ChatBox from './../../components/game/ChatBox'
+import UserInfoPage from './../../components/user/UserInfoPage';
 
 class NewGameForm extends Component{
 
@@ -50,7 +52,8 @@ class NewGameForm extends Component{
       gameBoard = (<GameBoard board={this.props.game.board} onClick={this.handleOnClick} clickable={!this.props.loading && this.currentTurn()==="your_turn"}/>);
     }
 
-    return (<div className="overlay">
+    return (<div>
+    <div className="overlay">
       <div className="game-window">
         <LoadingOverlay show={this.props.loading} bg={!this.props.inGame}/>
         <div className="title">
@@ -69,7 +72,9 @@ class NewGameForm extends Component{
         {gameBoard}
         <ChatBox />
       </div>
-      </div>);
+    </div>
+    <Route path={this.props.match.url+"/users/:id"} component={UserInfoPage} />
+  </div>);
   }
 
 }
