@@ -31,12 +31,12 @@ class UserContainer extends Component{
   }
 
   handleOnClose = (event) => {
-    this.props.history.push('/');
+    this.props.history.goBack();
   }
 
   componentDidUpdate(){
     if(this.props.account.loggedIn){
-      this.props.history.push('/')
+      this.props.history.goBack();
     }
   }
 

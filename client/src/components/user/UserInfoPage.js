@@ -12,11 +12,11 @@ class UserInfoPage extends Component{
 
   handleSignOut = (event) => {
     this.props.signOut();
-    this.props.history.push('/');
+    this.props.history.goBack();
   }
 
   handleOnClose = (event) => {
-    this.props.history.push('/');
+    this.props.history.goBack();
   }
 
   render(){
