@@ -4,8 +4,12 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
   def index
-    page_size = 25
-    render json: {users: ActiveModelSerializers::SerializableResource.new(User.all.offset(params[:offset].to_i).limit(page_size)).as_json, page_size: page_size}
+    page_size = 2
+    render json: {
+      users: ActiveModelSerializers::SerializableResource.new(User.all.offset(params[:offset].to_i).limit(page_size)).as_json,
+      page_size: page_size,
+      count: User.count
+    }
   end
 
   def user

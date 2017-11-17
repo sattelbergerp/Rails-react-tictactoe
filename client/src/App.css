@@ -14,6 +14,10 @@
   position: relative;
 }
 
+.users-list-footer{
+  text-align: center;
+}
+
 .table-no-items{
   text-align: center;
   margin-top: 5px;
@@ -78,6 +82,7 @@
 .mini-loader{
   height: 18px;
   width: 36px;
+  margin: auto;
 }
 
 .mini-loader > div{

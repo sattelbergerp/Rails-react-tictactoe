@@ -19,11 +19,17 @@ class UsersList extends Component{
   }
 
   render(){
+    let hasMore = (this.props.users.length < this.props.count);
+    let footer = (<div></div>);
+
+    if(this.props.loading)
+      footer = (<div className="mini-loader"><div /><div /><div /></div>);
+    else if(hasMore)
+      footer = (<a href="javascript:void(0)" onClick={this.loadMore} >Load More</a>)
+    else
+      footer = "End of Content"
+
     return (<div>
-      Users: {this.props.users.length}, Loading: {this.props.loading? "Yes" : "No"}, Page Size: {this.props.pageSize}<br/>
-      Has More: {((this.props.users.length % this.props.pageSize) === 0)? "Yes" : "No"}, 
-      <a href="javascript:void(0)" onClick={this.loadMore} >Load More</a>
-      <br />
       <ul>
       {this.props.users.map((user, index)=>{
         return <li key={index}>
@@ -32,6 +38,7 @@ class UsersList extends Component{
         </li>
       })}
       </ul>
+      <div className="users-list-footer">{footer}</div>
     </div>)
   }
 
@@ -41,7 +48,8 @@ function bindStateToProps(state){
   return {
     users: state.users.users,
     loading: state.users.loading,
-    pageSize: state.users.users_page_size
+    pageSize: state.users.users_page_size,
+    count: state.users.users_count
   };
 }
 
