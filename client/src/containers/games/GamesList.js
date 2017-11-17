@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchGames } from './../../actions/gamesActions';
 import { joinGame } from './../../actions/gameActions';
 import LoadingOverlay from './../../components/LoadingOverlay'
+import { Link } from 'react-router-dom';
 
 class GamesList extends Component{
 
@@ -44,8 +45,8 @@ class GamesList extends Component{
       gameList = this.props.games.map((game, index)=>{
       return (<tr key={index} className={game.id===this.state.selected? "game-list-seletcted" : ""} onClick={event=>this.select(event, game.id)}>
         <td>{game.name}</td>
-        <td>{game.player1? game.player1.email : ""}</td>
-        <td>{game.player2? game.player2.email : ""}</td>
+        <td>{game.player1? (<Link to={"/users/"+game.player1.id} >{game.player1.email}</Link>) : ""}</td>
+        <td>{game.player2? (<Link to={"/users/"+game.player2.id} >{game.player2.email}</Link>) : ""}</td>
         </tr>);
       });
     }
