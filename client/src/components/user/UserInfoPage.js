@@ -36,7 +36,8 @@ class UserInfoPage extends Component{
           {accountControls}
         </div>);
     }
-    return (<div>
+    return (<div className="overlay">
+      <div id="user-container">
         <h2>
           User
           <button type="button" className="close close-large right" onClick={this.handleOnClose} disabled={this.props.loading}>
@@ -44,7 +45,7 @@ class UserInfoPage extends Component{
           </button>
         </h2>
         {content}
-      </div>);
+      </div></div>);
   }
 
 }

@@ -50,7 +50,8 @@ class UserContainer extends Component{
       })}</div>);
     }
 
-    return (<div id="user-container">
+    return (<div className="overlay">
+      <div id="user-container">
         <h2>
           Sign Up
           <button type="button" className="close close-large right" onClick={this.handleOnClose} disabled={this.props.loading}>
@@ -78,7 +79,8 @@ class UserContainer extends Component{
             {this.props.account.loading? (<div className="mini-loader"><div /><div /><div /></div>) : 'Sign Up'}
           </button>
         </form>
-      </div>);
+      </div>
+    </div>);
   }
 
 }

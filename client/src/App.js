@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import UserContainer from './containers/user/UserContainer';
+import UserSignInForm from './components/user/UserSignInForm';
+import UserSignUpForm from './components/user/UserSignUpForm';
+import UserInfoPage from './components/user/UserInfoPage';
 import NewGameForm from './components/game/NewGameForm'
+import UsersList from './components/user/UsersList'
 import GameWindow from './containers/game/GameWindow'
 import GamesList from './containers/games/GamesList'
 import AboutPage from './containers/AboutPage'
@@ -27,9 +30,14 @@ class App extends Component {
           <NavBar />
           <Switch>
             <Route path="/about" component={AboutPage} />
+            <Route path="/users" component={UsersList} />
             <Route path="/" component={GamesList} />
           </Switch>
-          <Route path="/users" component={UserContainer} />
+          <Switch>
+            <Route path="/users/sign_in" component={UserSignInForm} />
+            <Route path="/users/sign_up" component={UserSignUpForm} />
+            <Route path="/users/:id" component={UserInfoPage} />
+          </Switch>
           <Switch>
             <Route path="/games/new" component={NewGameForm} />
             <Route path="/games/:id" component={GameWindow} />
