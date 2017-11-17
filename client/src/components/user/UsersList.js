@@ -30,14 +30,26 @@ class UsersList extends Component{
       footer = "End of Content"
 
     return (<div>
-      <ul>
-      {this.props.users.map((user, index)=>{
-        return <li key={index}>
-          Email: {user.email}, Wins: {user.wins}, Losses: {user.losses}, Win %: {user.win_percent}
-          <Link to={"/users/"+user.id} > Profile</Link>
-        </li>
-      })}
-      </ul>
+      <table className="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Wins</th>
+            <th scope="col">Losses</th>
+            <th scope="col">Win Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.props.users.map((user, index)=>{
+            return <tr key={index}>
+              <td><Link to={"/users/"+user.id} >{user.email}</Link></td>
+              <td>{user.wins}</td>
+              <td>{user.losses}</td>
+              <td>{user.win_percent}%</td>
+            </tr>
+          })}
+        </tbody>
+      </table>
       <div className="users-list-footer">{footer}</div>
     </div>)
   }
