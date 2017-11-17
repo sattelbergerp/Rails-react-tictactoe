@@ -29,7 +29,9 @@ class UserInfoPage extends Component{
           </div>);
       }
       content = (<div>
-          {this.props.user.email}
+          Email: {this.props.user.email}<br />
+          Wins: {this.props.user.wins}<br />
+          Losses: {this.props.user.losses}<br /><br />
           {accountControls}
         </div>);
     }
