@@ -26,13 +26,32 @@ class TicTacToeEngine
         @game.board = '         '
         @game.turn = false
         @game.swap_players = !@game.swap_players
-        @game.player1_wins += winner==1 ? 1 : 0
-        @game.player2_wins += winner==2 ? 1 : 0
+        update_score(winner)
+
       end
       return true
     else
       return false
     end
+  end
+
+  def update_score(winner)
+    if winner==1
+      @game.player1_wins += 1
+      @game.player1.wins += 1
+    else
+      @game.player1.losses += 1
+    end
+
+    if winner == 2
+      @game.player2_wins += 1
+      @game.player2.wins += 1
+    else
+      @game.player2.losses += 1
+    end
+
+    @game.player1.save
+    @game.player2.save
   end
 
   def valid_move?(position)
