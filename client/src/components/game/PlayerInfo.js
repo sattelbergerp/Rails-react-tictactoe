@@ -11,7 +11,7 @@ export default (props) => {
         <GameTile tile={props.game['player'+props.playerIndex+'_tile']} clickable={false} size={48}/>
       </div>
       <div className="player-info-text">
-      {player ? <Link to={"/games/"+props.game.id+"/users/"+player.id} >{player.email}</Link> : ""}<br/>
+      {player ? <Link to={"/games/"+props.game.id+"/users/"+player.id} >{player.display_name}</Link> : ""}<br/>
       Wins: { props.game['player'+props.playerIndex+'_wins']}
       </div>
     </div>);

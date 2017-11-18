@@ -42,7 +42,7 @@ class UsersList extends Component{
         <tbody>
           {this.props.users.map((user, index)=>{
             return <tr key={index}>
-              <td><Link to={"/users/"+user.id} >{user.email}</Link></td>
+              <td><Link to={"/users/"+user.id} >{user.display_name}</Link></td>
               <td>{user.wins}</td>
               <td>{user.losses}</td>
               <td>{user.win_percent}%</td>

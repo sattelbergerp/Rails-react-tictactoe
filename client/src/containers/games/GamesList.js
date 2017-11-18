@@ -45,8 +45,8 @@ class GamesList extends Component{
       gameList = this.props.games.map((game, index)=>{
       return (<tr key={index} className={game.id===this.state.selected? "game-list-seletcted" : ""} onClick={event=>this.select(event, game.id)}>
         <td>{game.name}</td>
-        <td>{game.player1? (<Link to={"/users/"+game.player1.id} >{game.player1.email}</Link>) : ""}</td>
-        <td>{game.player2? (<Link to={"/users/"+game.player2.id} >{game.player2.email}</Link>) : ""}</td>
+        <td>{game.player1? (<Link to={"/users/"+game.player1.id} >{game.player1.display_name}</Link>) : ""}</td>
+        <td>{game.player2? (<Link to={"/users/"+game.player2.id} >{game.player2.display_name}</Link>) : ""}</td>
         </tr>);
       });
     }
