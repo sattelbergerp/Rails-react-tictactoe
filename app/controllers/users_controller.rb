@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   respond_to :json;
 
-  before_action :set_user, only: [:show]
+  before_action :set_user, only: [:show, :update]
 
   def index
     page_size = 25
@@ -17,6 +17,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    render json: {user: ActiveModelSerializers::SerializableResource.new(@user).as_json}
+  end
+
+  def update
+    @user.update(params.require(:user).permit(:username))
     render json: {user: ActiveModelSerializers::SerializableResource.new(@user).as_json}
   end
 

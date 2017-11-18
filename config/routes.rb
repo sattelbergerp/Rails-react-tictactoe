@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root 'application#index'
   get '/user' => 'users#user'
-  resources :users, only: [:show, :index]
+  resources :users, only: [:show, :index, :update]
   resources :games, only: [:show, :create, :index, :destroy] do
     resources :messages, only: [:create]
   end
