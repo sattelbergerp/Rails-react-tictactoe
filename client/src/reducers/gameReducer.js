@@ -28,6 +28,7 @@ export default function usersReducer(state = {
         };
       }
       case 'UPDATE_GAME':
+        if(!state.inGame)return state;
         let loading = action.resetLoading? false : state.loading;
         if(action.payload.errors){
           return {
