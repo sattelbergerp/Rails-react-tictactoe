@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from './../../actions/usersActions'
 import { signOut } from './../../actions/accountActions'
-
+import LoadingOverlay from './../LoadingOverlay'
 
 class UserInfoPage extends Component{
 
@@ -20,8 +20,9 @@ class UserInfoPage extends Component{
   }
 
   render(){
-    let content = (<div>Loading...</div>);
-    if(!this.props.userLoading){
+    let content = (<div className="mini-loader"><div /><div /><div /></div>);
+    if(!this.props.user)content= (<div>Error loading user</div>)
+    if(!this.props.userLoading && this.props.user){
       let accountControls = (<div></div>);
       if(this.props.user.id === this.props.account.user.id){
         accountControls = (<div>

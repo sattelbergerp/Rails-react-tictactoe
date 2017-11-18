@@ -22,7 +22,8 @@ class UsersController < ApplicationController
 
   private
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
+    render json: {errors: ["That user could not be found"]}, status: 404 if !@user
   end
 
 end
