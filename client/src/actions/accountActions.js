@@ -33,6 +33,22 @@ function signUp(user){
   };
 }
 
+function updateUser(userId, user){
+  return dispatch => {
+    dispatch({type: 'UPDATE_STARTED'});
+    fetch('/users/'+userId+'.json', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: "same-origin",
+      method: "PATCH",
+      body: JSON.stringify({user})
+    }).then(res=>res.json())
+      .then(res=>dispatch({type: "UPDATE", payload: res.user}));
+  };
+}
+
 function signOut(){
   return dispatch => {
     dispatch({type: 'SIGN_OUT_STARTED'});
@@ -56,4 +72,4 @@ function clearErrors(){
   return {type: 'CLEAR_ERRORS'};
 }
 
-export {signIn, signUp, fetchCurrentUser, signOut, clearErrors};
+export {signIn, signUp, fetchCurrentUser, signOut, clearErrors, updateUser};

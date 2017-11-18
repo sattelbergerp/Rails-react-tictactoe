@@ -41,12 +41,22 @@ export default function accountReducer(state={
           }),
           user: {}};
       }
+    case 'UPDATE':
+      return {loggedIn: true,
+        loading: false,
+        errors: [],
+        user: action.payload};
     case 'SIGN_IN_STARTED':
       return loadingState;
     case 'SIGN_UP_STARTED':
       return loadingState;
     case 'SIGN_OUT_STARTED':
       return loadingState;
+    case 'UPDATE_STARTED':
+      return {loggedIn: true,
+        loading: true,
+        errors: [],
+        user: state.user,};
     case 'SIGN_OUT':
     return {loggedIn: false,
       loading: false,

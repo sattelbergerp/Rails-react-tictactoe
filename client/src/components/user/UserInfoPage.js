@@ -58,7 +58,7 @@ function bindStateToProps(state){
   return {
     user: state.users.user,
     account: state.account,
-    userLoading: state.users.loading
+    userLoading: state.users.loading,
   };
 }
 

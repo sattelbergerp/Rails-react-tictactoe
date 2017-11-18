@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signUp, clearErrors } from './../../actions/accountActions'
+import { updateUser } from './../../actions/accountActions'
 
 class UserEditForm extends Component{
 
@@ -21,7 +21,7 @@ class UserEditForm extends Component{
 
   handleOnSubmit = (event)=>{
     event.preventDefault();
-    alert(this.state.username);
+    this.props.updateUser(this.props.account.user.id, {username: this.state.username});
   }
 
   render(){
@@ -48,4 +48,4 @@ function bindStateToProps(state){
   return {account: state.account, username: state.account.user.username}
 }
 
-export default connect(bindStateToProps, {})(UserEditForm);
+export default connect(bindStateToProps, {updateUser})(UserEditForm);
