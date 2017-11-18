@@ -25,7 +25,7 @@ class ChatBox extends Component{
 
   render(){
     let contents = this.props.messages.slice().reverse().map((msg, index) => {
-      if(msg)return msg.user.email+': '+msg.contents;
+      if(msg)return msg.user.display_name+': '+msg.contents;
       else return "";
     }).join("\n");
     return (<div>
