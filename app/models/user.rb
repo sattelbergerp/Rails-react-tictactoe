@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   def display_name
+    return username if username && !username.empty?
     "#{email}"
   end
 end
