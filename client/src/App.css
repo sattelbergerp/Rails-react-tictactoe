@@ -51,6 +51,7 @@
   left: 0px;
   overflow: auto;
   position: fixed;
+  animation: fadeInBackground linear 0.2s 1;
 }
 
 .loading-overlay {
@@ -205,6 +206,15 @@
   width: 100%;
 }
 
+.modal {
+  background-color: rgba(0,0,0,0.7);
+  animation: fadeInBackground linear 0.2s 1;
+}
+
+.modal-dialog {
+  animation: windowPullUp 0.2s linear 1;
+}
+
 .modal-title {
     margin-bottom: 0;
     flex-grow: 1;
@@ -289,6 +299,14 @@
   }
 }
 
+@keyframes fadeInBackground{
+  0%{
+    background-color: rgba(0,0,0,0.0);
+  }
+  100%{
+    background-color: rgba(0,0,0,0.7);
+  }
+}
 
 html, body, #root, #app {
   margin: 0px;
