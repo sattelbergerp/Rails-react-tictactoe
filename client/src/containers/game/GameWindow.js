@@ -27,8 +27,9 @@ class NewGameForm extends Component{
   }
 
   onCloseGame = (event) => {
+    console.log("Unload event fired");
     this.props.deleteGame(this.props.game.id);
-    this.props.history.push('/');
+    return "OK!";
   }
 
   currentTurn(){

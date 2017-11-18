@@ -82,18 +82,15 @@ function openGame(gameId){
 
 function deleteGame(gameId){
   return dispatch => {
-    networkQueue.add(flagDone=>{
-      dispatch({type: "EXIT_GAME"})
-      flagDone();//We don't need to wait for this network request to complete, we jsut need to make sure we are not in the middle of a heartbeat
-      fetch('/games/'+gameId+'.json', {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        credentials: "same-origin",
-        method: "DELETE"
-      });
-    });
+    dispatch({type: "EXIT_GAME"})
+    fetch('/games/'+gameId+'.json', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: "same-origin",
+      method: "DELETE"
+    });    
   };
 }
 
