@@ -11,13 +11,6 @@ class GamesController < ApplicationController
   end
 
   def show
-    if current_user == @game.player1
-      @game.player1_last_update = Time.now.to_s
-      @game.save
-    elsif current_user == @game.player2
-      @game.player2_last_update = Time.now.to_s
-      @game.save
-    end
     since = DateTime.strptime(params[:since] ? "#{params[:since]}" : "0",'%s')
     render json: {
       game: ActiveModelSerializers::SerializableResource.new(@game).as_json,
@@ -30,7 +23,6 @@ class GamesController < ApplicationController
     if current_user
       @game = Game.new(game_params)
       @game.player1 = current_user
-      @game.player1_last_update = Time.now
       if @game.save
         render json: {game: ActiveModelSerializers::SerializableResource.new(@game).as_json}
       else
@@ -56,7 +48,6 @@ class GamesController < ApplicationController
       if !@game.player2
         if @game.player1 != current_user
           @game.player2 = current_user
-          @game.player2_last_update = Time.now
           @game.save
           render json: {
             game: ActiveModelSerializers::SerializableResource.new(@game).as_json
