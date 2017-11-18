@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUser } from './../../actions/usersActions'
 import { signOut } from './../../actions/accountActions'
 import LoadingOverlay from './../LoadingOverlay'
+import UserEditForm from './UserEditForm'
 
 class UserInfoPage extends Component{
 
@@ -26,6 +27,7 @@ class UserInfoPage extends Component{
       let accountControls = (<div></div>);
       if(this.props.user.id === this.props.account.user.id){
         accountControls = (<div>
+            <UserEditForm /><br />
             <button onClick={this.handleSignOut}>Sign Out</button>
           </div>);
       }

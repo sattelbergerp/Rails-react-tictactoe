@@ -72,7 +72,7 @@ class UserContainer extends Component{
             <label htmlFor="username">Display Name (Optional): </label>
             <input type="text" className="form-control" id="username"
               value={this.state.username} onChange={this.handleOnChange}/>
-            <small id="emailHelp" class="form-text text-muted">If blank your email will be used instead.</small>
+            <small id="emailHelp" className="form-text text-muted">If blank your email will be used instead.</small>
           </div>
           <div className="form-group">
             <label htmlFor="password">Password: </label>
