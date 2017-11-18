@@ -8,7 +8,9 @@ class UserContainer extends Component{
     super();
     this.state = {
       email: '',
-      password: ''
+      username: '',
+      password: '',
+      password_confirmation: '',
     }
   }
 
@@ -25,6 +27,7 @@ class UserContainer extends Component{
     if(this.state.email && this.state.password){
       this.props.signUp({
         email: this.state.email,
+        username: this.state.username,
         password: this.state.password,
         password_confirmation: this.state.password_confirmation,
       });
@@ -64,6 +67,12 @@ class UserContainer extends Component{
             <label htmlFor="email">Email: </label>
             <input type="text" className="form-control" id="email"
               value={this.state.email} onChange={this.handleOnChange}/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="username">Display Name (Optional): </label>
+            <input type="text" className="form-control" id="username"
+              value={this.state.username} onChange={this.handleOnChange}/>
+            <small id="emailHelp" class="form-text text-muted">If blank your email will be used instead.</small>
           </div>
           <div className="form-group">
             <label htmlFor="password">Password: </label>
