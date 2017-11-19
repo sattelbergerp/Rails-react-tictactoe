@@ -22,7 +22,7 @@ function startHeartbeat(){
         });
       }
 
-    }, 1000);
+    }, 500);
   }
 }
 
@@ -90,7 +90,7 @@ function deleteGame(gameId){
       },
       credentials: "same-origin",
       method: "DELETE"
-    });    
+    });
   };
 }
 
