@@ -21,8 +21,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(params.require(:user).permit(:username))
-    render json: {user: ActiveModelSerializers::SerializableResource.new(@user).as_json}
+    if @user == current_user
+      @user.update(params.require(:user).permit(:username))
+      render json: {user: ActiveModelSerializers::SerializableResource.new(@user).as_json}
+    else
+      render json: {errors: ["You don't have permission to do that"]}, status: 403
+    end
   end
 
   private
