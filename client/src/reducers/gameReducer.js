@@ -44,7 +44,7 @@ export default function usersReducer(state = {
             loading: loading,
             inGame: true,
             errors: state.errors,
-            current: action.payload.game,
+            current: (action.payload.game? action.payload.game : state.current),
             timestamp: action.payload.timestamp? action.payload.timestamp : state.timestamp,
             messages: action.payload.messages? state.messages.concat(action.payload.messages) : state.messages
           };

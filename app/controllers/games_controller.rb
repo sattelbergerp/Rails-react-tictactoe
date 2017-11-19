@@ -12,9 +12,13 @@ class GamesController < ApplicationController
 
   def show
     since = DateTime.strptime(params[:since] ? "#{params[:since]}" : "0",'%s')
+    game_to_send = nil
+    game_to_send = @game if @game.updated_at.to_i >= since.to_i
     render json: {
-      game: ActiveModelSerializers::SerializableResource.new(@game).as_json,
+      game: ActiveModelSerializers::SerializableResource.new(game_to_send).as_json,
       timestamp: Time.now.to_i,
+      update: @game.updated_at.to_i,
+      since: since.to_i,
       messages: ActiveModelSerializers::SerializableResource.new(@game.messages.where("? < created_at", since)).as_json
     }
   end
