@@ -11,26 +11,38 @@ import UserInfoPage from './../../components/user/UserInfoPage';
 
 class NewGameForm extends Component{
 
+  LEAVE_MSG = "Since you have played at least 1 turn this round you will recieve a loss for leaving. Click \'Ok\' to leave anyway.";
+
   componentDidMount(){
     if(!this.props.inGame && !this.props.loading){
       this.props.openGame(this.props.match.params.id);
     }
-    window.addEventListener('beforeunload', this.onCloseGame);
+    window.onbeforeunload = this.onCloseTabRequest;
+    window.onunload = this.onCloseGame;
   }
 
   componentWillUnmount = () => {
-    window.removeEventListener('beforeunload', this.onCloseGame);
+    window.onbeforeunload = undefined;
+    window.onunload = undefined;
   }
 
   handleOnClick = (index) => {
     this.props.doTurn(index, this.props.game.id);
   }
 
+  onCloseTabRequest = (event) => {
+    return this.hasPlayedTurn()?"Leave game?" : undefined;
+  }
+
+  onCloseGameRequest = (event) => {
+    if(!this.hasPlayedTurn() || window.confirm(this.LEAVE_MSG)){
+      this.onCloseGame();
+    }
+  }
+
   onCloseGame = (event) => {
-    console.log("Unload event fired");
     this.props.deleteGame(this.props.game.id);
     this.props.history.push('/');
-    return "OK!";
   }
 
   currentTurn(){
@@ -40,6 +52,13 @@ class NewGameForm extends Component{
     if(this.props.game.player2 && this.props.self.id===this.props.game.player2.id)
       return this.props.game.current_turn===2? "your_turn" : "opponents_turn";
     return "spectating";
+  }
+
+  hasPlayedTurn(){
+    if(!this.props.game.player1 || !this.props.game.player2 || !this.props.game.board)return false;
+    if(this.props.self.id===this.props.game.player1.id && this.props.game.board.includes(this.props.game.player1_tile))return true;
+    if(this.props.self.id===this.props.game.player2.id && this.props.game.board.includes(this.props.game.player2_tile))return true;
+    return false;
   }
 
   render(){
@@ -59,8 +78,8 @@ class NewGameForm extends Component{
       <div className="game-window">
         <LoadingOverlay show={this.props.loading} bg={!this.props.inGame}/>
         <div className="title">
-        {this.props.game.name}
-        <button type="button" className="close" onClick={this.onCloseGame} disabled={this.props.loading}>
+        {this.props.game.name} - {this.hasPlayedTurn()? "Turn" : "No"}
+        <button type="button" className="close" onClick={this.onCloseGameRequest} disabled={this.props.loading}>
           <span aria-hidden="true">&times;</span>
         </button>
         </div>
