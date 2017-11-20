@@ -55,7 +55,7 @@ class NewGameForm extends Component{
   }
 
   hasPlayedTurn(){
-    if(!this.props.game.player1 || !this.props.game.player2 || !this.props.game.board)return false;
+    if(!this.props.inGame||!this.props.game.player1 || !this.props.game.player2 || !this.props.game.board)return false;
     if(this.props.self.id===this.props.game.player1.id && this.props.game.board.includes(this.props.game.player1_tile))return true;
     if(this.props.self.id===this.props.game.player2.id && this.props.game.board.includes(this.props.game.player2_tile))return true;
     return false;

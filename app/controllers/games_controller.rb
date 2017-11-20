@@ -92,7 +92,7 @@ class GamesController < ApplicationController
   def set_game
     @game = Game.find_by(id: params[:id])
     if !@game
-      render json: {errors: ["The requested game does not exist (Perhaps the other player left)"]}
+      render json: {errors: ["The requested game does not exist (Perhaps the other player left)"]}, status: 404
     end
   end
 

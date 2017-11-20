@@ -33,7 +33,7 @@ export default function usersReducer(state = {
         if(action.payload.errors){
           return {
             loading: loading,
-            inGame: true,
+            inGame: action.payload.game !== undefined,
             errors: action.payload.errors,
             current: state.current,
             timestamp: state.timestamp,
