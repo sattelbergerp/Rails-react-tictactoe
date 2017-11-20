@@ -7,14 +7,25 @@ class TicTacToeEngine
   end
 
   def players_turn? (player)
-    player_index = 0
-    if player == @game.player1
-      player_index = 1
-    elsif player == @game.player2
-      player_index = 2
-    end
+    get_player_index(player) == current_turn
+  end
 
-    player_index == current_turn
+  def get_player_index(player)
+    if player == @game.player1
+      return 1
+    elsif player == @game.player2
+      return 2
+    end
+    return -1
+  end
+
+  def has_placed_tile?(player)
+    player_index = get_player_index(player)
+    if player_index == 1
+      return @game.board.include?(player1_tile)
+    elsif player_index == 2
+      return @game.board.include?(player2_tile)
+    end
   end
 
   def do_turn(position)
