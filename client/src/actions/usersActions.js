@@ -6,6 +6,14 @@ function fetchUser(userId){
   };
 }
 
+function updateUser(userId){
+  return dispatch => {
+    dispatch({type: 'UPDATE_USER_STARTED'});
+    fetch('/users/'+userId+'/vote.json', {credentials: "same-origin", method: "POST"}).then(res=>res.json())
+      .then(res=>{dispatch({type: "UPDATE_USER", payload: res.user})});
+  };
+}
+
 function fetchUsers(offset, clear){
   if(!offset)offset='0';
   return dispatch => {
@@ -16,4 +24,4 @@ function fetchUsers(offset, clear){
   };
 }
 
-export { fetchUser, fetchUsers };
+export { fetchUser, fetchUsers, updateUser };

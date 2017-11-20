@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { updateUser } from './../../actions/usersActions';
 
 class UsersListItem extends Component{
 
   constructor(){
     super();
-    this.state = {votes: 0};
   }
 
   vote = (event) => {
-    this.setState({votes: this.state.votes+1})
+    this.props.updateUser(this.props.user.id);
   }
 
   render(){
@@ -18,12 +19,21 @@ class UsersListItem extends Component{
       <td>{this.props.user.wins}</td>
       <td>{this.props.user.losses}</td>
       <td>
-        {this.props.user.win_percent}%, Votes: {this.state.votes}
-        <button onClick={this.vote} >Vote</button>
+        {this.props.user.win_percent}%
+        <span className="right">
+          Votes: {this.props.user.votes},
+          <button onClick={this.vote} disabled={this.props.loading}>
+            {this.props.loading?(<div className="mini-loader"><div /><div /><div /></div>) : "Vote"}
+          </button>
+        </span>
       </td>
     </tr>
   }
 
 }
 
-export default UsersListItem;
+function bindStateToProps(state){
+  return {loading: state.users.loading};
+}
+
+export default connect(bindStateToProps, {updateUser})(UsersListItem);
