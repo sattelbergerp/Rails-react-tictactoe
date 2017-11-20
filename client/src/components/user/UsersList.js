@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchUsers } from './../../actions/usersActions';
+import UsersListItem from './UsersListItem'
 
 class UsersList extends Component{
 
@@ -36,12 +37,7 @@ class UsersList extends Component{
         </thead>
         <tbody>
           {this.props.users.map((user, index)=>{
-            return <tr key={index}>
-              <td><Link to={"/users/"+user.id} >{user.display_name}</Link></td>
-              <td>{user.wins}</td>
-              <td>{user.losses}</td>
-              <td>{user.win_percent}%</td>
-            </tr>
+            return <UsersListItem key={index} user={user} />
           })}
         </tbody>
       </table>
