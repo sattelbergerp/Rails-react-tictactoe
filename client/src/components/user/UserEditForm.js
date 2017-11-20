@@ -45,7 +45,7 @@ class UserEditForm extends Component{
 }
 
 function bindStateToProps(state){
-  return {account: state.account, username: state.account.user.username}
+  return {account: state.account, username: state.account.user.username? state.account.user.username : ''}
 }
 
 export default connect(bindStateToProps, {updateUser})(UserEditForm);

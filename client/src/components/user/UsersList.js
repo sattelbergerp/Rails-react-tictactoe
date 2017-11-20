@@ -2,13 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchUsers } from './../../actions/usersActions';
-import LoadingOverlay from './../../components/LoadingOverlay'
 
 class UsersList extends Component{
-
-  constructor(){
-    super();
-  }
 
   componentDidMount(){
     this.props.fetchUsers(0, true);
@@ -25,7 +20,7 @@ class UsersList extends Component{
     if(this.props.loading)
       footer = (<div className="mini-loader"><div /><div /><div /></div>);
     else if(hasMore)
-      footer = (<a href="javascript:void(0)" onClick={this.loadMore} >Load More</a>)
+      footer = (<a onClick={this.loadMore} >Load More</a>)
     else
       footer = "End of Content"
 

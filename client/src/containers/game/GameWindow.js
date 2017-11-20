@@ -11,7 +11,7 @@ import UserInfoPage from './../../components/user/UserInfoPage';
 
 class NewGameForm extends Component{
 
-  LEAVE_MSG = "Since you have played at least 1 turn this round you will recieve a loss for leaving. Click \'Ok\' to leave anyway.";
+  LEAVE_MSG = "Since you have played at least 1 turn this round you will recieve a loss for leaving. Click 'Ok' to leave anyway.";
 
   componentDidMount(){
     if(!this.props.inGame && !this.props.loading){
@@ -78,7 +78,7 @@ class NewGameForm extends Component{
       <div className="game-window">
         <LoadingOverlay show={this.props.loading} bg={!this.props.inGame}/>
         <div className="title">
-        {this.props.game.name} - {this.hasPlayedTurn()? "Turn" : "No"}
+        {this.props.game.name}
         <button type="button" className="close" onClick={this.onCloseGameRequest} disabled={this.props.loading}>
           <span aria-hidden="true">&times;</span>
         </button>

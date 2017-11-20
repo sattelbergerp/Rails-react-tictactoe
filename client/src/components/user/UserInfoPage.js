@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from './../../actions/usersActions'
 import { signOut } from './../../actions/accountActions'
-import LoadingOverlay from './../LoadingOverlay'
 import UserEditForm from './UserEditForm'
 
 class UserInfoPage extends Component{
