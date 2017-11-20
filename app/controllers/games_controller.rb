@@ -38,7 +38,7 @@ class GamesController < ApplicationController
   def destroy
     if current_user && (current_user == @game.player1 || current_user == @game.player2)
       engine = TicTacToeEngine.new(@game)
-      if engine.has_placed_tile?(current_user)
+      if @game.player1 && @game.player2 && engine.has_placed_tile?(current_user)
         engine.update_score(engine.get_player_index(current_user) == 1 ? 2 : 1)
       end
       @game.messages.destroy_all
