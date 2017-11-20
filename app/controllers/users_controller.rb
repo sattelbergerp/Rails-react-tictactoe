@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   respond_to :json;
 
-  before_action :set_user, only: [:show, :update]
+  before_action :set_user, only: [:show, :update, :vote]
 
   def index
     page_size = 25
@@ -17,6 +17,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    render json: {user: ActiveModelSerializers::SerializableResource.new(@user).as_json}
+  end
+
+  def vote
+    @user.votes += 1
+    @user.save
     render json: {user: ActiveModelSerializers::SerializableResource.new(@user).as_json}
   end
 

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :games, only: [:show, :create, :index, :destroy] do
     resources :messages, only: [:create]
   end
+  post '/users/:id/vote' => 'users#vote'
   post '/games/:id/join' => 'games#join'
   post '/games/:id/turn' => 'games#turn'
 

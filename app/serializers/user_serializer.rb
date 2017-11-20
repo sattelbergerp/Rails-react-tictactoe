@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :wins, :losses, :display_name, :username
+  attributes :id, :wins, :losses, :display_name, :username, :votes
 
   attribute :win_percent do
     if object.wins==0
